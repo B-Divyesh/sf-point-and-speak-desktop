@@ -17,11 +17,12 @@ try {
   $actual = (Get-FileHash $msi -Algorithm SHA256).Hash.ToLowerInvariant()
   if (-not $expected -or $expected -ne $actual) { throw "Checksum did not match. Nothing was installed." }
   if ($env:POINT_SPEAK_TEST_ONLY -eq "1") {
-    Write-Host "Verified SHA256 for the Point & Speak installer. Test mode did not open it."
+    Write-Output "Verified SHA256 for the Point & Speak installer. Test mode did not open it."
   } elseif ($installer.name -match "\.msi$") {
     Start-Process msiexec.exe -ArgumentList "/i `"$msi`"" -Wait
+    Write-Output "Verified SHA256 and opened the Point & Speak installer."
   } else {
     Start-Process $msi -Wait
+    Write-Output "Verified SHA256 and opened the Point & Speak installer."
   }
-  Write-Host "Verified SHA256 and opened the Point & Speak installer."
 } finally { Remove-Item $tempDir -Recurse -Force -ErrorAction SilentlyContinue }
