@@ -1,0 +1,18 @@
+:root { --cyan: #006f82; }
+main:empty + .site-footer { display: none; }
+
+@media (prefers-color-scheme: dark) {
+  :root { --cyan: #42d8e9; }
+}
+
+:root[data-supporter-theme="orange"] {
+  --cyan: #9b3d13;
+  --orange: #006f82;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root[data-supporter-theme="orange"] {
+    --cyan: #ff9a63;
+    --orange: #42d8e9;
+  }
+}

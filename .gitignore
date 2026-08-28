@@ -3,4 +3,8 @@ dist/
 .env
 *.log
 graphify-out/
+test-results/
+playwright-report/
+src-tauri/target/
+scripts/__pycache__/
 .DS_Store

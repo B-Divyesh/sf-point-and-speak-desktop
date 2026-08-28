@@ -1,0 +1,58 @@
+[
+  {
+    "id": "sample-region",
+    "claim": "The demo turns a selected sample region into editable text.",
+    "where": "demo capture sheet",
+    "test": "npm test -- --grep @claim:sample-region",
+    "sandbox": "fresh browser context at /demo; activate the shipped inventory region and assert useful rows appear"
+  },
+  {
+    "id": "local-only",
+    "claim": "Screen images stay on your computer.",
+    "where": "landing facts and privacy page",
+    "test": "npm test -- --grep @claim:local-only",
+    "sandbox": "fresh browser context at /demo; intercept the full capture and pin flow and assert no cross-origin requests"
+  },
+  {
+    "id": "speak",
+    "claim": "Recognised text can be spoken with the device voice.",
+    "where": "landing workflow and demo Speak text button",
+    "test": "npm test -- --grep @claim:speak",
+    "sandbox": "fresh browser context at /demo with a speech synthesis spy; assert the recognised text reaches the device speech API"
+  },
+  {
+    "id": "pin-result",
+    "claim": "Recognised text can be pinned and removed.",
+    "where": "landing workflow and demo Pin result button",
+    "test": "npm test -- --grep @claim:pin-result",
+    "sandbox": "fresh browser context at /demo; pin the sample result, assert its contents, then remove it"
+  },
+  {
+    "id": "no-demo-storage",
+    "claim": "Demo sample data is not saved.",
+    "where": "first action and persistent demo banner",
+    "test": "npm test -- --grep @claim:no-demo-storage",
+    "sandbox": "fresh browser context at /demo; use and reset the demo, then assert no demo storage keys and no visible result"
+  },
+  {
+    "id": "offline-reload",
+    "claim": "The demo works offline after the first visit.",
+    "where": "README and offline product fact",
+    "test": "npm test -- --grep @claim:offline-reload",
+    "sandbox": "fresh browser context; load /demo, wait for the service worker, set the context offline, reload, and assert the demo heading"
+  },
+  {
+    "id": "bundled-ocr",
+    "claim": "English OCR files ship with the app.",
+    "where": "landing facts and README",
+    "test": "npm test -- --grep @claim:bundled-ocr",
+    "sandbox": "fresh browser context; fetch the same-origin English language model and OCR worker and assert both contain data"
+  },
+  {
+    "id": "supporter-themes",
+    "claim": "A valid supporter license activates two blueprint page themes.",
+    "where": "landing paid tier",
+    "test": "npm test -- --grep @claim:supporter-themes",
+    "sandbox": "fresh browser context with a recorded valid license response; select the second theme and assert its palette is applied"
+  }
+]

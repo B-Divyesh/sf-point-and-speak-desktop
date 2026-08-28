@@ -1,0 +1,20 @@
+$ErrorActionPreference = "Stop"
+$repo = "B-Divyesh/sf-point-and-speak-desktop"
+$release = Invoke-RestMethod "https://api.github.com/repos/$repo/releases/latest"
+$installer = $release.assets | Where-Object { $_.name -match "\.msi$" } | Select-Object -First 1
+$sums = $release.assets | Where-Object { $_.name -eq "SHA256SUMS" } | Select-Object -First 1
+if (-not $installer -or -not $sums) { throw "Windows download is still being published." }
+$tempDir = Join-Path ([IO.Path]::GetTempPath()) ("point-speak-" + [Guid]::NewGuid())
+New-Item -ItemType Directory -Path $tempDir | Out-Null
+try {
+  $msi = Join-Path $tempDir $installer.name
+  $sumFile = Join-Path $tempDir "SHA256SUMS"
+  Invoke-WebRequest $installer.browser_download_url -OutFile $msi
+  Invoke-WebRequest $sums.browser_download_url -OutFile $sumFile
+  $line = Get-Content $sumFile | Where-Object { $_ -match [regex]::Escape($installer.name) } | Select-Object -First 1
+  $expected = ($line -split "\s+")[0].ToLowerInvariant()
+  $actual = (Get-FileHash $msi -Algorithm SHA256).Hash.ToLowerInvariant()
+  if (-not $expected -or $expected -ne $actual) { throw "Checksum did not match. Nothing was installed." }
+  Start-Process msiexec.exe -ArgumentList "/i `"$msi`"" -Wait
+  Write-Host "Verified SHA256 and opened the Point & Speak installer."
+} finally { Remove-Item $tempDir -Recurse -Force -ErrorAction SilentlyContinue }
