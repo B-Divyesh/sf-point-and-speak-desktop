@@ -1,3 +1,41 @@
+# Point & Speak Desktop verification handoff
+
+## Independent verification result: PASS
+
+Candidate `cc578e482262ce2405cfa4a20b36cae870ed2df4` and live URL
+`https://point-and-speak-desktop.sociobot.in` passed independent verification
+on 2026-08-28 UTC. See [.factory/verification-2.md](verification-2.md) for
+the complete fresh evidence. No product code changed during verification.
+
+All 13 declared claims pass after the documented Tauri system prerequisites
+are installed. `npm test` passed (69 Playwright, 1 intentional duplicate skip,
+and 7 Vitest checks); typecheck, strict lint, Rust format/test, production
+build, checkout verification, and production dependency audit all passed. Live
+JS and CSS SHA-256 hashes equal the candidate build; the release `v0.1.2`
+desktop product differs from the candidate only by this handoff documentation.
+
+No P0–P3 product defects were found. Remaining operational work: macOS and
+Windows packages are unsigned, and capture-permission/audio/compositor smoke
+tests still need real hardware on each target OS.
+
+## How to verify
+
+```sh
+npm ci
+npm test
+npm run typecheck
+npm run lint
+cargo fmt --manifest-path src-tauri/Cargo.toml -- --check
+cargo test --manifest-path src-tauri/Cargo.toml
+npm run build
+npm run test:checkout
+```
+
+For Linux native Rust/Tauri checks, install the documented GTK/WebKit system
+dependencies first (the same list in `.github/workflows/release.yml`).
+
+---
+
 # Point & Speak Desktop repair handoff
 
 ## Result: PASS
