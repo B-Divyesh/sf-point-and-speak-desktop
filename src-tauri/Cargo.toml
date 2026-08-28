@@ -1,0 +1,22 @@
+[package]
+name = "point-and-speak-desktop"
+version = "0.1.0"
+description = "Read any screen region aloud with local OCR"
+authors = ["Param Factory"]
+edition = "2021"
+license = "MIT"
+
+[lib]
+name = "point_and_speak_desktop_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = [] }
+tauri-plugin-global-shortcut = "2"
+screenshots = "0.8"
+base64 = "0.22"
+image = { version = "0.24", default-features = false, features = ["png"] }
+

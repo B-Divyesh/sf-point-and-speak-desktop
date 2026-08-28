@@ -1,0 +1,42 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "Point & Speak Desktop",
+  "version": "0.1.0",
+  "identifier": "in.sociobot.point-and-speak-desktop",
+  "build": {
+    "beforeDevCommand": "npm run dev:app",
+    "devUrl": "http://localhost:1420",
+    "beforeBuildCommand": "npm run build:app",
+    "frontendDist": "../dist/app"
+  },
+  "app": {
+    "windows": [
+      {
+        "label": "main",
+        "title": "Point & Speak Desktop",
+        "width": 1180,
+        "height": 820,
+        "minWidth": 390,
+        "minHeight": 640,
+        "alwaysOnTop": true,
+        "center": true
+      }
+    ],
+    "security": {
+      "csp": "default-src 'self' customprotocol: asset:; script-src 'self' 'wasm-unsafe-eval' blob:; worker-src 'self' blob:; connect-src 'self' ipc: http://ipc.localhost asset: customprotocol:; img-src 'self' asset: http://asset.localhost data: blob:; style-src 'self'; font-src 'self';"
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": "all",
+    "icon": ["icons/32x32.png", "icons/128x128.png", "icons/128x128@2x.png", "icons/icon.icns", "icons/icon.ico"],
+    "category": "Utility",
+    "shortDescription": "Read any screen region aloud",
+    "longDescription": "Select text in remote desktops, games, canvas interfaces, and legacy software. Read it locally, then speak, copy, or pin the result.",
+    "copyright": "Copyright 2026 Sociobot (Param Factory)",
+    "macOS": {
+      "minimumSystemVersion": "10.15",
+      "infoPlist": "Info.plist"
+    }
+  }
+}

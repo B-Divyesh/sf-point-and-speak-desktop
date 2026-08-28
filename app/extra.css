@@ -1,0 +1,6 @@
+.empty-state .tool + .tool { margin-left: 8px; }
+
+@media (max-width: 480px) {
+  .empty-state .tool { display: block; width: 100%; }
+  .empty-state .tool + .tool { margin: 8px 0 0; }
+}
