@@ -39,6 +39,10 @@ Verification on 2026-08-28:
 - Site bundles: 5.90 KB JavaScript gzip and 3.50 KB CSS gzip. Mobile hero is
   16 KB WebP; the largest hero source is 107 KB WebP.
 - Local evidence: `/work/.evidence/point-and-speak/`.
+- Release `v0.1.1` completed on all four runners. Assets include Apple Silicon
+  and Intel DMGs, Linux AppImage and DEB, and a Windows NSIS setup EXE.
+- Downloaded `Point.Speak.Desktop_0.1.1_x64-setup.exe` passed its published
+  `SHA256SUMS` entry. Published `latest.json` contains every platform URL.
 
 ## Privacy and assets
 
