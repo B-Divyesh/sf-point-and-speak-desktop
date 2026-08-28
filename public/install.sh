@@ -1,7 +1,7 @@
 #!/bin/sh
 set -eu
 repo="B-Divyesh/sf-point-and-speak-desktop"
-api="https://api.github.com/repos/$repo/releases/latest"
+api="${POINT_SPEAK_RELEASE_API:-https://api.github.com/repos/$repo/releases/latest}"
 release_json="$(mktemp)"
 checksum_file="$(mktemp)"
 trap 'rm -f "$release_json" "$checksum_file"' EXIT

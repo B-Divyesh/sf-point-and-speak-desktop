@@ -1,8 +1,34 @@
 :root { --cyan: #006f82; }
 main:empty + .site-footer { display: none; }
 
+.site-header a,
+.site-footer a,
+.demo-banner a {
+  align-items: center;
+  display: inline-flex;
+  min-height: 44px;
+}
+
+.demo-result input[type="range"] { height: 44px; min-height: 44px; }
+
 @media (prefers-color-scheme: dark) {
-  :root { --cyan: #42d8e9; }
+  :root {
+    --cyan: #42d8e9;
+    --line: #587780;
+    --orange: #ff9a63;
+    --orange-ink: #071a23;
+  }
+
+  .band { color: #f8f3df; }
+  .band p { color: #b6c9cd; }
+  .button--orange,
+  .capture-hit span,
+  .demo-banner,
+  .preview-caption { color: var(--orange-ink); }
+  .demo-banner a { color: inherit; }
+  .preview-caption kbd { border-color: currentColor; }
+  .boundaries { background: #125665; color: #f8f3df; }
+  .boundaries .sheet-label { color: #f8f3df; }
 }
 
 :root[data-supporter-theme="orange"] {

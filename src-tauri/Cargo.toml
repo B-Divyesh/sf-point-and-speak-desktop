@@ -1,6 +1,6 @@
 [package]
 name = "point-and-speak-desktop"
-version = "0.1.1"
+version = "0.1.2"
 description = "Read any screen region aloud with local OCR"
 authors = ["Param Factory"]
 edition = "2021"

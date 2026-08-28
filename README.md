@@ -43,15 +43,19 @@ model. No OCR service or account is required.
 
 ```sh
 npm test
+cargo fmt --manifest-path src-tauri/Cargo.toml -- --check
 cargo test --manifest-path src-tauri/Cargo.toml
+npm run typecheck
+npm run lint
+npm run test:checkout # live $19 catalog and hosted checkout redirect
 npm run build        # dist/app and dist/site
 npm run build:site   # exact static deploy command; output is dist/site
 ```
 
-The Playwright suite opens a fresh `/demo` sandbox for every product claim. It
-also checks WCAG A/AA rules, offline reload, the 390 px layout, and route
-semantics. See [.factory/claims.json](.factory/claims.json) for each claim and
-its exact command.
+The test suite opens fresh site and app contexts for product claims. It checks
+the real bundled OCR path, both color schemes, offline reload, the 390 px
+layout, and route semantics. See [.factory/claims.json](.factory/claims.json)
+for each claim and its exact command.
 
 ## Install and release
 
@@ -60,8 +64,9 @@ Intel and Apple Silicon DMGs, a Windows MSI or EXE, and Linux AppImage and DEB
 files. A final job publishes `SHA256SUMS` and `latest.json`.
 
 The landing page detects the visitor's system and reads the latest release
-through the CORS-enabled GitHub API. When no release exists, it links to the
-release page without throwing an error.
+through the CORS-enabled GitHub API. It offers separate macOS downloads for
+Intel and Apple Silicon. When no release exists, it links to the release page
+without throwing an error.
 
 After the first tagged release, Linux users can run:
 

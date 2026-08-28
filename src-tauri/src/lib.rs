@@ -7,6 +7,10 @@ use std::time::Duration;
 use tauri::{Emitter, Manager};
 use tauri_plugin_global_shortcut::{Code, GlobalShortcutExt, Modifiers, Shortcut, ShortcutState};
 
+fn capture_shortcut() -> Shortcut {
+    Shortcut::new(Some(Modifiers::CONTROL | Modifiers::SHIFT), Code::Space)
+}
+
 #[tauri::command]
 fn capture_desktop(window: tauri::WebviewWindow) -> Result<String, String> {
     window
@@ -72,7 +76,7 @@ pub fn run() {
         .plugin(tauri_plugin_global_shortcut::Builder::new().build())
         .invoke_handler(tauri::generate_handler![capture_desktop])
         .setup(|app| {
-            let shortcut = Shortcut::new(Some(Modifiers::CONTROL | Modifiers::SHIFT), Code::Space);
+            let shortcut = capture_shortcut();
             app.global_shortcut()
                 .on_shortcut(shortcut, move |app, _, event| {
                     if event.state() == ShortcutState::Pressed {
@@ -85,4 +89,18 @@ pub fn run() {
         })
         .run(tauri::generate_context!())
         .expect("error while running Point & Speak Desktop");
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    /// @claim:global-shortcut
+    fn claim_global_shortcut_is_ctrl_shift_space() {
+        assert_eq!(
+            capture_shortcut(),
+            Shortcut::new(Some(Modifiers::CONTROL | Modifiers::SHIFT), Code::Space)
+        );
+    }
 }

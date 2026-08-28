@@ -1,6 +1,20 @@
 .empty-state .tool + .tool { margin-left: 8px; }
 
+/* Hidden state must override the general canvas display rule. */
+[hidden] { display: none !important; }
+
+.speed + input { min-height: 44px; }
+
 @media (max-width: 480px) {
+  .capture { padding: 12px; }
+  .capture__bar .tool { margin-top: 8px; }
+  .status { margin: 10px 0; padding: 8px 12px; }
+  .workspace { min-height: 0; }
+  .empty-state { padding: 16px 12px; }
+  .empty-state p { margin: 8px 0 12px; }
+  .reticle { width: 64px; height: 44px; margin-bottom: 8px; }
+  .reticle::before { width: 82px; left: -12px; top: 18px; }
+  .reticle::after { height: 60px; top: -11px; left: 29px; }
   .empty-state .tool { display: block; width: 100%; }
   .empty-state .tool + .tool { margin: 8px 0 0; }
 }

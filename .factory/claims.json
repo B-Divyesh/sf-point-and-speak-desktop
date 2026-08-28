@@ -8,10 +8,10 @@
   },
   {
     "id": "local-only",
-    "claim": "Screen images stay on your computer.",
-    "where": "landing facts and privacy page",
+    "claim": "Screen images stay on your computer, with no cloud image upload or app telemetry.",
+    "where": "landing facts, privacy page, and README",
     "test": "npm test -- --grep @claim:local-only",
-    "sandbox": "fresh browser context at /demo; intercept the full capture and pin flow and assert no cross-origin requests"
+    "sandbox": "fresh desktop-app webview; run bundled sample capture through real local OCR, pin it, and assert no cross-origin requests"
   },
   {
     "id": "speak",
@@ -35,6 +35,34 @@
     "sandbox": "fresh browser context at /demo; use and reset the demo, then assert no demo storage keys and no visible result"
   },
   {
+    "id": "capture-memory",
+    "claim": "App captures and pinned results stay in memory and are discarded when the capture window reloads or closes.",
+    "where": "landing privacy boundary, privacy page, and README",
+    "test": "npm test -- --grep @claim:capture-memory",
+    "sandbox": "fresh desktop-app webview; run the real bundled OCR path, pin the result, assert capture state is absent from localStorage, reload, and assert capture and result are gone"
+  },
+  {
+    "id": "global-shortcut",
+    "claim": "Ctrl+Shift+Space opens the capture flow.",
+    "where": "landing workflow and README",
+    "test": "cargo test --manifest-path src-tauri/Cargo.toml claim_global_shortcut_is_ctrl_shift_space",
+    "sandbox": "native unit test asserts the shortcut registered by the runtime is exactly Control+Shift+Space"
+  },
+  {
+    "id": "free-core",
+    "claim": "Capture, OCR, speech, copy, and pin work without a license.",
+    "where": "landing facts, paid tier, terms, and README",
+    "test": "npm test -- --grep @claim:free-core",
+    "sandbox": "fresh desktop-app webview with no license; run the real sample OCR path and assert speech, copy, and pin all work"
+  },
+  {
+    "id": "checksum-installers",
+    "claim": "Install scripts verify the downloaded app against the published SHA256 checksum before installing.",
+    "where": "README install section",
+    "test": "npm test -- --grep @claim:checksum-installers",
+    "sandbox": "local fixture release; assert a matching Linux artifact installs and a tampered artifact is rejected without creating the command link"
+  },
+  {
     "id": "offline-reload",
     "claim": "The demo works offline after the first visit.",
     "where": "README and offline product fact",
@@ -54,5 +82,12 @@
     "where": "landing paid tier",
     "test": "npm test -- --grep @claim:supporter-themes",
     "sandbox": "fresh browser context with a recorded valid license response; select the second theme and assert its palette is applied"
+  },
+  {
+    "id": "checkout-live",
+    "claim": "A $19 one-time supporter license is available through Sociobot checkout.",
+    "where": "landing facts, paid tier, and README",
+    "test": "npm run test:checkout",
+    "sandbox": "live public product catalog must list USD 19.00, then checkout must return HTTP 303 to an HTTPS checkout.dodopayments.com session"
   }
 ]

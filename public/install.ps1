@@ -1,6 +1,7 @@
 $ErrorActionPreference = "Stop"
 $repo = "B-Divyesh/sf-point-and-speak-desktop"
-$release = Invoke-RestMethod "https://api.github.com/repos/$repo/releases/latest"
+$api = if ($env:POINT_SPEAK_RELEASE_API) { $env:POINT_SPEAK_RELEASE_API } else { "https://api.github.com/repos/$repo/releases/latest" }
+$release = Invoke-RestMethod $api
 $installer = $release.assets | Where-Object { $_.name -match "(\.msi$|-setup\.exe$)" } | Select-Object -First 1
 $sums = $release.assets | Where-Object { $_.name -eq "SHA256SUMS" } | Select-Object -First 1
 if (-not $installer -or -not $sums) { throw "Windows download is still being published." }
@@ -15,7 +16,9 @@ try {
   $expected = ($line -split "\s+")[0].ToLowerInvariant()
   $actual = (Get-FileHash $msi -Algorithm SHA256).Hash.ToLowerInvariant()
   if (-not $expected -or $expected -ne $actual) { throw "Checksum did not match. Nothing was installed." }
-  if ($installer.name -match "\.msi$") {
+  if ($env:POINT_SPEAK_TEST_ONLY -eq "1") {
+    Write-Host "Verified SHA256 for the Point & Speak installer. Test mode did not open it."
+  } elseif ($installer.name -match "\.msi$") {
     Start-Process msiexec.exe -ArgumentList "/i `"$msi`"" -Wait
   } else {
     Start-Process $msi -Wait

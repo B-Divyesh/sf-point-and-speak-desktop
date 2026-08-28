@@ -33,7 +33,7 @@ const templates = {
     </section>
     <section class="install band" aria-labelledby="install-title">
       <div><p class="sheet-label">Installer / detected platform</p><h2 id="install-title">Install the desktop shortcut</h2><p id="download-note">Checking the latest release for this computer…</p></div>
-      <div class="download-tools"><a id="download-button" class="button button--primary" href="https://github.com/${REPO}/releases">View release downloads</a><label for="platform">Other system</label><select id="platform"><option value="windows">Windows</option><option value="mac">macOS</option><option value="linux">Linux</option></select></div>
+      <div class="download-tools"><a id="download-button" class="button button--primary" href="https://github.com/${REPO}/releases">View release downloads</a><label for="platform">Other system</label><select id="platform"><option value="windows">Windows</option><option value="mac-arm64">macOS — Apple Silicon</option><option value="mac-x64">macOS — Intel</option><option value="linux">Linux</option></select></div>
     </section>
     <section class="live-preview" aria-labelledby="preview-title">
       <div class="section-heading"><p class="sheet-label">Product view / actual controls</p><h2 id="preview-title">One shortcut. One region. Your choice.</h2><p>Press the shortcut, drag around text, then choose what happens.</p></div>
@@ -97,9 +97,8 @@ function pathKey() {
   return "notFound";
 }
 
-function route(push = false) {
+function route(focusHeading = false) {
   const key = pathKey();
-  if (push) history.pushState({}, "", location.href);
   main.innerHTML = templates[key]();
   const titles = { home: "Point & Speak — Read screen text aloud", demo: "Demo — Point & Speak", privacy: "Privacy — Point & Speak", terms: "Terms — Point & Speak", notFound: "Page not found — Point & Speak" };
   document.title = titles[key];
@@ -109,7 +108,7 @@ function route(push = false) {
   if (key === "home") { void setupDownloads(); setupLicense(); }
   if (key === "demo") setupDemo();
   const h1 = main.querySelector<HTMLElement>("h1")!;
-  h1.focus({ preventScroll: true });
+  if (focusHeading) h1.focus({ preventScroll: true });
   routeStatus.textContent = `${h1.textContent} page loaded`;
   scrollTo({ top: 0, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
 }
@@ -118,7 +117,7 @@ function bindLinks() {}
 
 function osName() {
   const value = navigator.userAgent.toLowerCase();
-  return value.includes("win") ? "windows" : value.includes("mac") ? "mac" : "linux";
+  return value.includes("win") ? "windows" : value.includes("mac") ? "mac-arm64" : "linux";
 }
 
 async function setupDownloads() {
@@ -146,8 +145,14 @@ async function setupDownloads() {
 }
 
 type Release = { tag_name: string; html_url: string; assets: { name: string; browser_download_url: string }[] };
-function assetFor(assets: Release["assets"], os: string) { const pattern = os === "windows" ? /\.msi$|setup\.exe$/i : os === "mac" ? /\.dmg$/i : /\.AppImage$/i; return assets.find((asset) => pattern.test(asset.name)); }
-function labelFor(os: string) { return os === "windows" ? "Windows" : os === "mac" ? "macOS" : "Linux"; }
+function assetFor(assets: Release["assets"], os: string) {
+  const pattern = os === "windows" ? /\.msi$|setup\.exe$/i
+    : os === "mac-arm64" ? /aarch64.*\.dmg$/i
+      : os === "mac-x64" ? /x64.*\.dmg$/i
+        : /\.AppImage$/i;
+  return assets.find((asset) => pattern.test(asset.name));
+}
+function labelFor(os: string) { return os === "windows" ? "Windows" : os === "mac-arm64" ? "macOS — Apple Silicon" : os === "mac-x64" ? "macOS — Intel" : "Linux"; }
 
 function setupDemo() {
   const capture = document.querySelector<HTMLElement>("#sample-capture")!;
@@ -158,7 +163,14 @@ function setupDemo() {
   const reset = () => { text.value = ""; resultPanel.hidden = true; document.querySelector<HTMLElement>("#demo-pinned")!.hidden = true; status.textContent = ""; };
   capture.addEventListener("click", () => { text.value = sample; resultPanel.hidden = false; status.textContent = "Text is ready. Review it, then speak, copy, or pin it."; text.focus(); });
   document.querySelector("#reset-demo")!.addEventListener("click", reset);
-  document.querySelector("#demo-speak")!.addEventListener("click", () => { speechSynthesis.cancel(); const speech = new SpeechSynthesisUtterance(text.value); speech.rate = Number((document.querySelector("#demo-speed") as HTMLInputElement).value); speechSynthesis.speak(speech); status.textContent = "Speaking the sample text with your device voice."; });
+  document.querySelector("#demo-speak")!.addEventListener("click", () => {
+    speechSynthesis.cancel();
+    if (!text.value.trim()) { status.textContent = "There is no text to speak. Read the sample region first."; return; }
+    const speech = new SpeechSynthesisUtterance(text.value);
+    speech.rate = Number((document.querySelector("#demo-speed") as HTMLInputElement).value);
+    speechSynthesis.speak(speech);
+    status.textContent = "Speaking the sample text with your device voice.";
+  });
   document.querySelector("#demo-copy")!.addEventListener("click", async () => { try { await navigator.clipboard.writeText(text.value); status.textContent = "Sample text copied to the clipboard."; } catch { status.textContent = "Copy was blocked. Select the text and use your keyboard copy command."; } });
   document.querySelector("#demo-pin")!.addEventListener("click", () => { const pin = document.querySelector<HTMLElement>("#demo-pinned")!; pin.querySelector("p")!.textContent = text.value; pin.hidden = false; status.textContent = "Sample result pinned for this demo session."; });
   document.querySelector("#demo-unpin")!.addEventListener("click", () => { document.querySelector<HTMLElement>("#demo-pinned")!.hidden = true; status.textContent = "Pinned result removed."; });
@@ -168,7 +180,7 @@ function setupDemo() {
 function setupLicense() {
   const params = new URLSearchParams(location.search);
   const incoming = params.get("license");
-  if (incoming) { localStorage.setItem(LICENSE_KEY, incoming); params.delete("license"); history.replaceState({}, "", `${location.pathname}${params.size ? `?${params}` : ""}${location.hash}`); void verifyLicense(incoming); }
+  if (incoming) { localStorage.setItem(LICENSE_KEY, incoming); params.delete("license"); history.replaceState({}, "", `${location.pathname}${params.size ? `?${params}` : ""}${location.hash}`); void verifyLicense(incoming, true); }
   const restore = document.querySelector<HTMLButtonElement>("#restore-license")!;
   const picker = document.querySelector<HTMLSelectElement>("#supporter-theme")!;
   picker.value = localStorage.getItem("supporter_theme") || "cyan";
@@ -201,8 +213,8 @@ function showSupporterThemes(valid: boolean) {
 
 document.addEventListener("click", (event) => {
   const link = (event.target as HTMLElement).closest<HTMLAnchorElement>("a[data-link]");
-  if (link && link.origin === location.origin) { event.preventDefault(); history.pushState({}, "", link.href); route(); }
+  if (link && link.origin === location.origin) { event.preventDefault(); history.pushState({}, "", link.href); route(true); }
 });
-window.addEventListener("popstate", () => route());
+window.addEventListener("popstate", () => route(true));
 route();
 if ("serviceWorker" in navigator && import.meta.env.PROD) void navigator.serviceWorker.register("/sw.js");

@@ -44,6 +44,8 @@ sentence exceeds 22 words. No sentence contains a banned marketing word.
 | Sample text copied to the clipboard. | 6 | Pass |
 | Copy was blocked. | 3 | Pass |
 | Select the text and use your keyboard copy command. | 9 | Pass |
+| There is no text to speak. | 6 | Pass |
+| Read the sample region first. | 5 | Pass |
 | License check is unavailable. | 4 | Pass |
 | The free core still works. | 5 | Pass |
 
