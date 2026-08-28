@@ -41,7 +41,7 @@ async function captureScreen() {
   setStatus("Capturing your screen…");
   panel.hidden = true;
   try {
-    const dataUrl = await invoke<string>("capture_primary_screen");
+    const dataUrl = await invoke<string>("capture_desktop");
     showScreen(dataUrl, "Drag a rectangle around the text. Press Escape to cancel.");
   } catch (error) {
     setStatus(`The screen could not be captured. Allow screen recording in system settings, then try again. ${String(error)}`);
