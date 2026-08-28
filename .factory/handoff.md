@@ -1,69 +1,78 @@
-# Point & Speak Desktop handoff
+# Point & Speak Desktop verification handoff
 
-## What shipped
+## Result: FAIL
 
-- Tauri 2 desktop app for Windows, macOS, and Linux.
-- `Ctrl+Shift+Space` global shortcut, all-display capture, drag selection, local
-  English OCR, editable result, device speech, copy, pin, and speed control.
-- First-run sample region that exercises the same bundled Tesseract worker.
-- Static product site with OS-aware downloads, one-click sandbox, offline demo,
-  privacy, terms, 404 state, and a $19 Sociobot supporter license flow.
-- Supporter license restore, daily verification cache, and two page themes.
-- Tag-driven GitHub Actions release matrix with checksums and `latest.json`.
+Independent QA on 2026-08-28 tested candidate
+`fc39728a4ed0d875f1fa2571b2940bee649cc0c5` and
+`https://point-and-speak-desktop.sociobot.in`.
 
-## Run and verify
+Do not release this candidate. The live `$19` checkout returns HTTP 404; the
+released desktop app renders a hidden canvas and pushes Capture screen and Load
+sample region below its default and minimum windows; dark mode has serious
+contrast failures; and the claims manifest does not cover all relied-on
+landing/README claims. Full evidence is in `.factory/verification.md`.
+
+## What passed
+
+- All eight exact claim commands passed after `npm ci`, on desktop and mobile.
+- Full suite: 4 Vitest and 30 Playwright tests passed.
+- `npm run build` produced `dist/app` and `dist/site`.
+- Rust format, test, and strict clippy checks passed after installing the
+  workflow's declared Linux packages.
+- The published AppImage launches, the global shortcut invokes capture, and
+  its bundled sample completes OCR after scrolling to the hidden action.
+- A 20-image synthetic OCR run produced 20/20 usable results under two seconds.
+- Light-theme axe scans, keyboard flow, reduced motion, 390px layout, offline
+  reload/update, console checks, privacy network interception, security
+  headers, caching, and bundle budgets passed.
+- Mobile Lighthouse: 93 performance, 100 accessibility, 100 best practices,
+  100 SEO; LCP 1.1s and CLS 0.
+- Live JS/CSS hashes match the candidate build.
+- Release `v0.1.1` has successful Linux, Windows, macOS Intel, macOS ARM, and
+  checksum jobs. The downloaded Windows EXE and isolated shell install matched
+  published checksums.
+- Verification API rate limiting passed: a 240-request burst returned 32 HTTP
+  200 and 208 HTTP 429 responses; all 429s had `Retry-After`.
+
+## Defects to fix before re-verification
+
+1. Register/enable the billing product so the advertised checkout stops
+   returning 404, then test purchase, return-token storage, verification,
+   restore, and revocation end to end.
+2. Restore true `[hidden]` behavior in the app so first-run actions are visible
+   without scrolling at 1180x820 and 390x640, and keep hidden controls out of
+   keyboard focus.
+3. Fix every dark-theme contrast violation and add dark-mode axe coverage.
+4. Add claim entries/tests for the global shortcut, actual app privacy and
+   retention, free-core behavior, and checksum installers. Tests must exercise
+   the desktop path rather than only the canned web demo.
+5. Make `npx tsc --noEmit -p tsconfig.json` pass and expose it as a script.
+6. Increase all interactive targets to at least 44px, including site links and
+   the app speed range.
+7. Offer explicit Intel and Apple Silicon macOS downloads.
+8. Return HTTP 404 for unknown routes and handle empty demo speech as an error.
+
+## Re-run
 
 ```sh
 npm ci
 npm test
+npx tsc --noEmit -p tsconfig.json
+cargo fmt --manifest-path src-tauri/Cargo.toml -- --check
 cargo test --manifest-path src-tauri/Cargo.toml
+cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets -- -D warnings
 npm run build
-npm run build:site
 ```
 
-The static deploy command is `npm run build:site`. Its root is `dist/site`,
-with `dist/site/index.html` present. The desktop webview builds to `dist/app`.
+Then repeat live light/dark axe scans, checkout and rate-limit checks, offline
+reload/update, installer checksums, and first-run AppImage verification.
 
-Verification on 2026-08-28:
+## Operator action still required
 
-- Vitest: 4 passed.
-- Playwright: 30 passed across desktop and 390 px mobile Chromium.
-- Axe: no serious or critical findings on `/`, `/demo`, `/privacy`, `/terms`,
-  or the designed 404 route.
-- Rust: library, binary, and doc test targets passed.
-- Native sample smoke test: bundled OCR returned all four inventory rows.
-- `verify-url.sh`: HTTP 200, no console errors, one `h1`, `lang`, `main`, and
-  complete image alt text.
-- Lighthouse mobile: performance 100, accessibility 100, best practices 100,
-  SEO 100; LCP 1.4 s, TBT 30 ms, CLS 0.
-- Site bundles: 5.90 KB JavaScript gzip and 3.50 KB CSS gzip. Mobile hero is
-  16 KB WebP; the largest hero source is 107 KB WebP.
-- Local evidence: `/work/.evidence/point-and-speak/`.
-- Release `v0.1.1` completed on all four runners. Assets include Apple Silicon
-  and Intel DMGs, Linux AppImage and DEB, and a Windows NSIS setup EXE.
-- Downloaded `Point.Speak.Desktop_0.1.1_x64-setup.exe` passed its published
-  `SHA256SUMS` entry. Published `latest.json` contains every platform URL.
-
-## Privacy and assets
-
-Screen pixels and OCR stay inside the desktop app. Captures remain in memory.
-Only license tokens are sent to Sociobot for explicit license verification.
-The generated blueprint illustration is original; prompt and provenance are in
-`.factory/design.md` and its source files are in `assets/src/`.
-
-## Known gaps
-
-- The 20-region pilot target needs validation on real workplace screens and
-  hardware; the automated sample proves the path, not the 70% field target.
-- The `screenshots` Rust dependency reports a future-compatibility warning but
-  compiles and tests on the current stable toolchain.
-
-## Needs operator action
-
-- Register the paid product and $19 price in Sociobot billing.
-- Add signing to the release workflow when certificates are available. Expected
-  secret names: `APPLE_CERTIFICATE`, `APPLE_CERTIFICATE_PASSWORD`,
+- Enable the `$19` Sociobot product/checkout.
+- Add macOS and Windows signing when certificates are available. Expected
+  secrets remain `APPLE_CERTIFICATE`, `APPLE_CERTIFICATE_PASSWORD`,
   `APPLE_SIGNING_IDENTITY`, `APPLE_ID`, `APPLE_PASSWORD`, `APPLE_TEAM_ID`,
   `WINDOWS_CERT_PFX`, and `WINDOWS_CERT_PASSWORD`.
-- Grant the app screen-recording permission when prompted on macOS and the
-  equivalent capture permission on managed desktops.
+- Run real-hardware screen capture, permission, speech, and installer passes on
+  Linux, macOS Intel/ARM, and Windows.
