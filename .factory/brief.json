@@ -1,0 +1,8 @@
+{
+  "slug": "point-and-speak-desktop",
+  "title": "Point & Speak Desktop",
+  "summary": "Read any screen region aloud when accessibility tools cannot.",
+  "artifact_class": "desktop-app",
+  "monetization": "one-time",
+  "success_measure": "At least 70% of pilot captures produce a usable spoken result in under two seconds for 20 representative regions."
+}
