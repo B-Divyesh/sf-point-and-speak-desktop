@@ -1,6 +1,6 @@
 [package]
 name = "point-and-speak-desktop"
-version = "0.1.0"
+version = "0.1.1"
 description = "Read any screen region aloud with local OCR"
 authors = ["Param Factory"]
 edition = "2021"
@@ -19,4 +19,3 @@ tauri-plugin-global-shortcut = "2"
 screenshots = "0.8"
 base64 = "0.22"
 image = { version = "0.24", default-features = false, features = ["png"] }
-
