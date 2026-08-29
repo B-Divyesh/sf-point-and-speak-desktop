@@ -1,0 +1,110 @@
+{
+  "checkedAt": "2026-08-29T09:36:33.905Z",
+  "downloads": [
+    {
+      "platform": "windows",
+      "href": "https://github.com/B-Divyesh/sf-point-and-speak-desktop/releases/download/v0.1.4/Point.Speak.Desktop_0.1.4_x64-setup.exe",
+      "note": "v0.1.4 is ready."
+    },
+    {
+      "platform": "mac-arm64",
+      "href": "https://github.com/B-Divyesh/sf-point-and-speak-desktop/releases/download/v0.1.4/Point.Speak.Desktop_0.1.4_aarch64.dmg",
+      "note": "v0.1.4 is ready."
+    },
+    {
+      "platform": "mac-x64",
+      "href": "https://github.com/B-Divyesh/sf-point-and-speak-desktop/releases/download/v0.1.4/Point.Speak.Desktop_0.1.4_x64.dmg",
+      "note": "v0.1.4 is ready."
+    },
+    {
+      "platform": "linux",
+      "href": "https://github.com/B-Divyesh/sf-point-and-speak-desktop/releases/download/v0.1.4/Point.Speak.Desktop_0.1.4_amd64.AppImage",
+      "note": "v0.1.4 is ready."
+    }
+  ],
+  "badDownloads": [],
+  "results": [
+    {
+      "href": "https://api.sociobot.in/api/v1/products/point-and-speak-desktop/checkout",
+      "status": 303,
+      "location": "https://checkout.dodopayments.com/session/<redacted>"
+    },
+    {
+      "href": "https://github.com/B-Divyesh/sf-point-and-speak-desktop/releases/download/v0.1.4/Point.Speak.Desktop_0.1.4_amd64.AppImage",
+      "status": 302,
+      "location": "https://release-assets.githubusercontent.com/<redacted>"
+    },
+    {
+      "href": "https://point-and-speak-desktop.sociobot.in/",
+      "status": 200,
+      "location": null
+    },
+    {
+      "href": "https://point-and-speak-desktop.sociobot.in/?demo=1",
+      "status": 200,
+      "location": null
+    },
+    {
+      "href": "https://point-and-speak-desktop.sociobot.in/#how",
+      "status": 200,
+      "location": null
+    },
+    {
+      "href": "https://point-and-speak-desktop.sociobot.in/#main",
+      "status": "same-page-fragment",
+      "location": null
+    },
+    {
+      "href": "https://point-and-speak-desktop.sociobot.in/demo",
+      "status": 200,
+      "location": null
+    },
+    {
+      "href": "https://point-and-speak-desktop.sociobot.in/demo#main",
+      "status": "same-page-fragment",
+      "location": null
+    },
+    {
+      "href": "https://point-and-speak-desktop.sociobot.in/privacy",
+      "status": 200,
+      "location": null
+    },
+    {
+      "href": "https://point-and-speak-desktop.sociobot.in/privacy#main",
+      "status": "same-page-fragment",
+      "location": null
+    },
+    {
+      "href": "https://point-and-speak-desktop.sociobot.in/terms",
+      "status": 200,
+      "location": null
+    },
+    {
+      "href": "https://point-and-speak-desktop.sociobot.in/terms#main",
+      "status": "same-page-fragment",
+      "location": null
+    },
+    {
+      "href": "https://point-and-speak-desktop.sociobot.in/verification-5-missing#main",
+      "status": "same-page-fragment",
+      "location": null
+    },
+    {
+      "href": "https://sociobot.in/",
+      "status": 200,
+      "location": null
+    },
+    {
+      "href": "https://sociobot.in/terms",
+      "status": 200,
+      "location": null
+    },
+    {
+      "href": "mailto:privacy@sociobot.in",
+      "status": "allowed-non-http",
+      "location": null
+    }
+  ],
+  "failed": [],
+  "pass": true
+}

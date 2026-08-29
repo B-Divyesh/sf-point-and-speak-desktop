@@ -1,95 +1,84 @@
-# Point & Speak Desktop — polish round 2 handoff
+# Point & Speak Desktop — verification 5 handoff
 
 ## Status
 
-**PASS — no review finding remains.** The repair is commit
-`6a1d310f16a62861a26eafd267adabc142a6af6e`, tagged and released as `v0.1.4`.
-It repairs candidate `cb911aaf2c52f7ee18afe2dc80349718882936eb` against every
-finding in the cumulative review record.
+**FAIL — do not release candidate
+`a61c71236936b84c3b770fcbccbcbeb8ce4eaa4e`.**
 
-## What changed
+Independent QA on 2026-08-29 found one release-blocking accessibility defect
+in the desktop app. The primary **Capture screen** and **Speak text** buttons
+become dark text on a dark background when hovered. Axe measured **Capture
+screen** at 1.11:1 and the populated **Speak text** state at 1.49:1 rather than
+the required 4.5:1, rating both serious. See `.factory/verification-5.md` and
+`.factory/evidence/verification-5/app-result-contrast.png`.
 
-- Added a native, explicit-action capture gateway. The desktop backend accepts
-  only `button`, `again`, or `shortcut`; startup and invalid sources cannot
-  capture pixels. The new `capture-on-demand` claim uses a fake backend to
-  prove zero idle calls and one call after either the Capture screen action or
-  configured shortcut.
-- Registered the privacy promise in `.factory/claims.json`; the manifest now
-  has 19 uniquely tagged, executable claim checks.
-- Split the README audience wording into two short sentences, added every
-  README prose row to the copy audit, and updated the verb-first catalog line.
-- Bumped the complete artifact identity to 0.1.4 and cache name to
-  `point-speak-v5`, so the repaired desktop code and live download links refer
-  to the same release.
-- Recorded every historical finding and its proof in `.factory/polish-2.md`.
+No product code was changed during verification.
 
-## Exact verification
+## Required repair
 
-From a clean clone of tag `v0.1.4` at
-`/tmp/point-speak-clean-lLqIDY`:
+Preserve an accessible foreground/background pair for `.tool--primary` in
+every interaction state. Add an axe scan after loading/recognising sample text
+and hovering the primary action. Rebuild, publish new installers, redeploy if
+site identity changes, and rerun all claims and verification.
 
-```text
-npm ci                                                    PASS (78 packages; 0 audit findings)
-npm test                                                  PASS (12 Vitest; 89 Playwright; 1 intentional duplicate skip)
-cargo test --manifest-path src-tauri/Cargo.toml          PASS (2 native claims)
-npm run lint                                              PASS
-cargo fmt --manifest-path src-tauri/Cargo.toml -- --check PASS
-npm run build                                             PASS (dist/app and dist/site)
-npm audit --omit=dev --audit-level=high                  PASS (0 vulnerabilities)
-```
+## What passed
 
-Every command named in `.factory/claims.json` was then executed separately
-from that same fresh clone. All 19 passed, including
-`@claim:capture-on-demand`, `@claim:selected-region-speech`, offline demo,
-privacy/storage, Linux installer checksum, and the live `$19` checkout check.
+- All 19 commands in `.factory/claims.json` pass after `npm ci` and the Linux
+  Tauri prerequisites.
+- `npm test`: 12 Vitest passed; 89 Playwright passed; one intentional duplicate
+  skipped.
+- Typecheck, strict lint/Clippy, Rust formatting, two native tests, production
+  audit, and `npm run build` pass.
+- The first-read and one-click populated demo gates pass.
+- Live demo behavior, empty-input recovery, keyboard use, reduced motion,
+  320/390 px reflow, touch targets, privacy request log, storage isolation,
+  policy routes, metadata, links, 404, service-worker update, and offline
+  reload pass.
+- Live invalid-license handling calls only GitHub/Sociobot, strips the token,
+  stores the documented keys, and leaves the free core available.
+- Sociobot verification rate limiting allows 30 requests, then returns 429
+  with `Retry-After: 4`.
+- A fresh 20-region OCR pilot passed 20/20; model startup was 923 ms and the
+  slowest recognition was 268 ms.
+- Mobile Lighthouse: 94 Performance, 100 Accessibility, 100 Best Practices,
+  100 SEO; FCP 0.9 s, LCP 1.9 s, CLS 0, total transfer 50 KiB.
+- The live site matches `dist/site` byte for byte for HTML, CSS, JS, 404, and
+  service worker.
+- Release `v0.1.4` has five platform installers plus checksum/manifest/
+  provenance files. The live Linux installer produced an AppImage whose digest
+  matches the published SHA256 exactly.
 
-Live accessibility verification passed:
-
-- `/opt/fleet/lib/verify-url.sh https://point-and-speak-desktop.sociobot.in`
-  reports HTTPS 200, title, `lang=en`, one h1, main landmark, complete image
-  alts, labelled buttons, and zero console errors.
-- Axe WCAG A/AA scans across home, direct demo, `/demo`, `/privacy`, `/terms`,
-  and the real 404 in light and dark mode found zero serious/critical issues.
-- Lighthouse against production: Performance 100, Accessibility 100, Best
-  Practices 100, SEO 100.
-
-Screenshot and machine-readable evidence is in `.factory/evidence/polish-2-*`
-and `.factory/evidence/polish-2-live-verify/`.
-
-## Deployment and release
-
-- Static site deployed from `dist/site` through Azure Static Web Apps to
-  <https://point-and-speak-desktop.sociobot.in>.
-- Cold live checks confirm cache `point-speak-v5`, footer Version 0.1.4, the
-  one-click populated `?demo=1` banner/reset path, route titles, no console
-  errors, and designed HTTP 404.
-- GitHub Actions run
-  [33243620220](https://github.com/B-Divyesh/sf-point-and-speak-desktop/actions/runs/33243620220)
-  completed successfully for source commit `6a1d310`. Release
-  [v0.1.4](https://github.com/B-Divyesh/sf-point-and-speak-desktop/releases/tag/v0.1.4)
-  contains Linux AppImage/DEB, Windows setup EXE, Apple Silicon and Intel DMGs,
-  `SHA256SUMS`, `latest.json`, and `PROVENANCE.json`.
-- The downloaded `Point.Speak.Desktop_0.1.4_amd64.deb` verifies against the
-  published checksum. A cold live browser resolved Linux, Windows, and macOS
-  to their v0.1.4 assets with no console errors.
-
-## Run locally
+## Reproduce
 
 ```sh
 npm ci
 npm test
-cargo test --manifest-path src-tauri/Cargo.toml
+npm run typecheck
 npm run lint
 cargo fmt --manifest-path src-tauri/Cargo.toml -- --check
+cargo test --manifest-path src-tauri/Cargo.toml
 npm run build
+npm audit --omit=dev --audit-level=high
 ```
 
-The isolated sample is at
-<https://point-and-speak-desktop.sociobot.in/?demo=1>.
+Run the verifier evidence scripts after serving the production app at
+`http://127.0.0.1:4174`:
 
-## Remaining operator action
+```sh
+node .factory/evidence/verification-5/live-qa.mjs
+node .factory/evidence/verification-5/app-qa.mjs
+node .factory/evidence/verification-5/ocr-pilot.mjs
+node .factory/evidence/verification-5/link-qa.mjs
+node .factory/evidence/verification-5/license-live.mjs
+node .factory/evidence/verification-5/rate-limit.mjs
+```
 
-No product, review, or release finding remains. macOS notarization and Windows
-Authenticode are optional distribution signing steps that require the owner's
-`APPLE_CERTIFICATE` and `WINDOWS_CERT_PFX` secrets; the release workflow builds
-the current unsigned packages without them.
+`app-qa.mjs` intentionally exits nonzero while the serious contrast defect is
+present. The direct demo is
+`https://point-and-speak-desktop.sociobot.in/?demo=1`.
+
+## Remaining platform boundary
+
+Real hardware is needed for OS capture prompts, audible voices, and
+multi-display behavior. macOS and Windows packages remain unsigned pending the
+operator's signing credentials.

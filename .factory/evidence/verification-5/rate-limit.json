@@ -1,0 +1,207 @@
+{
+  "checkedAt": "2026-08-29T09:29:30.267Z",
+  "endpoint": "https://api.sociobot.in/api/v1/products/point-and-speak-desktop/verify?license=verification-5-invalid",
+  "observedAllowanceBefore429": 30,
+  "first429At": 31,
+  "attempts": [
+    {
+      "index": 1,
+      "status": 200,
+      "retryAfter": null,
+      "allowOrigin": "https://point-and-speak-desktop.sociobot.in"
+    },
+    {
+      "index": 2,
+      "status": 200,
+      "retryAfter": null,
+      "allowOrigin": "https://point-and-speak-desktop.sociobot.in"
+    },
+    {
+      "index": 3,
+      "status": 200,
+      "retryAfter": null,
+      "allowOrigin": "https://point-and-speak-desktop.sociobot.in"
+    },
+    {
+      "index": 4,
+      "status": 200,
+      "retryAfter": null,
+      "allowOrigin": "https://point-and-speak-desktop.sociobot.in"
+    },
+    {
+      "index": 5,
+      "status": 200,
+      "retryAfter": null,
+      "allowOrigin": "https://point-and-speak-desktop.sociobot.in"
+    },
+    {
+      "index": 6,
+      "status": 200,
+      "retryAfter": null,
+      "allowOrigin": "https://point-and-speak-desktop.sociobot.in"
+    },
+    {
+      "index": 7,
+      "status": 200,
+      "retryAfter": null,
+      "allowOrigin": "https://point-and-speak-desktop.sociobot.in"
+    },
+    {
+      "index": 8,
+      "status": 200,
+      "retryAfter": null,
+      "allowOrigin": "https://point-and-speak-desktop.sociobot.in"
+    },
+    {
+      "index": 9,
+      "status": 200,
+      "retryAfter": null,
+      "allowOrigin": "https://point-and-speak-desktop.sociobot.in"
+    },
+    {
+      "index": 10,
+      "status": 200,
+      "retryAfter": null,
+      "allowOrigin": "https://point-and-speak-desktop.sociobot.in"
+    },
+    {
+      "index": 11,
+      "status": 200,
+      "retryAfter": null,
+      "allowOrigin": "https://point-and-speak-desktop.sociobot.in"
+    },
+    {
+      "index": 12,
+      "status": 200,
+      "retryAfter": null,
+      "allowOrigin": "https://point-and-speak-desktop.sociobot.in"
+    },
+    {
+      "index": 13,
+      "status": 200,
+      "retryAfter": null,
+      "allowOrigin": "https://point-and-speak-desktop.sociobot.in"
+    },
+    {
+      "index": 14,
+      "status": 200,
+      "retryAfter": null,
+      "allowOrigin": "https://point-and-speak-desktop.sociobot.in"
+    },
+    {
+      "index": 15,
+      "status": 200,
+      "retryAfter": null,
+      "allowOrigin": "https://point-and-speak-desktop.sociobot.in"
+    },
+    {
+      "index": 16,
+      "status": 200,
+      "retryAfter": null,
+      "allowOrigin": "https://point-and-speak-desktop.sociobot.in"
+    },
+    {
+      "index": 17,
+      "status": 200,
+      "retryAfter": null,
+      "allowOrigin": "https://point-and-speak-desktop.sociobot.in"
+    },
+    {
+      "index": 18,
+      "status": 200,
+      "retryAfter": null,
+      "allowOrigin": "https://point-and-speak-desktop.sociobot.in"
+    },
+    {
+      "index": 19,
+      "status": 200,
+      "retryAfter": null,
+      "allowOrigin": "https://point-and-speak-desktop.sociobot.in"
+    },
+    {
+      "index": 20,
+      "status": 200,
+      "retryAfter": null,
+      "allowOrigin": "https://point-and-speak-desktop.sociobot.in"
+    },
+    {
+      "index": 21,
+      "status": 200,
+      "retryAfter": null,
+      "allowOrigin": "https://point-and-speak-desktop.sociobot.in"
+    },
+    {
+      "index": 22,
+      "status": 200,
+      "retryAfter": null,
+      "allowOrigin": "https://point-and-speak-desktop.sociobot.in"
+    },
+    {
+      "index": 23,
+      "status": 200,
+      "retryAfter": null,
+      "allowOrigin": "https://point-and-speak-desktop.sociobot.in"
+    },
+    {
+      "index": 24,
+      "status": 200,
+      "retryAfter": null,
+      "allowOrigin": "https://point-and-speak-desktop.sociobot.in"
+    },
+    {
+      "index": 25,
+      "status": 200,
+      "retryAfter": null,
+      "allowOrigin": "https://point-and-speak-desktop.sociobot.in"
+    },
+    {
+      "index": 26,
+      "status": 200,
+      "retryAfter": null,
+      "allowOrigin": "https://point-and-speak-desktop.sociobot.in"
+    },
+    {
+      "index": 27,
+      "status": 200,
+      "retryAfter": null,
+      "allowOrigin": "https://point-and-speak-desktop.sociobot.in"
+    },
+    {
+      "index": 28,
+      "status": 200,
+      "retryAfter": null,
+      "allowOrigin": "https://point-and-speak-desktop.sociobot.in"
+    },
+    {
+      "index": 29,
+      "status": 200,
+      "retryAfter": null,
+      "allowOrigin": "https://point-and-speak-desktop.sociobot.in"
+    },
+    {
+      "index": 30,
+      "status": 200,
+      "retryAfter": null,
+      "allowOrigin": "https://point-and-speak-desktop.sociobot.in"
+    },
+    {
+      "index": 31,
+      "status": 429,
+      "retryAfter": "4",
+      "allowOrigin": "https://point-and-speak-desktop.sociobot.in"
+    },
+    {
+      "index": 32,
+      "status": 429,
+      "retryAfter": "4",
+      "allowOrigin": "https://point-and-speak-desktop.sociobot.in"
+    },
+    {
+      "index": 33,
+      "status": 429,
+      "retryAfter": "4",
+      "allowOrigin": "https://point-and-speak-desktop.sociobot.in"
+    }
+  ],
+  "pass": true
+}

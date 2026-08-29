@@ -1,0 +1,381 @@
+{
+  "checkedAt": "2026-08-29T09:25:27.898Z",
+  "base": "https://point-and-speak-desktop.sociobot.in",
+  "checks": {
+    "firstReadAndDemo": {
+      "pass": true,
+      "firstRead": {
+        "title": "Point & Speak Desktop — Read screen text aloud",
+        "h1": "Read selected screen text aloud",
+        "body": "FOR LOW-VISION DESKTOP USERS\n\nREAD SELECTED SCREEN TEXT ALOUD\n\nFor low-vision desktop users when screen readers miss text in remote desktops, old software, games, or visual app interfaces.\n\nTry it with sample data\nSee an editable result at once. Your real data stays untouched.\nLocal: captured images stay on your computer.\nOffline: English text-recognition files ship with the app.\nPrice: core tools are free; supporter license is $19 once.\nA\nDraw a region around the text you want to hear.\n\nCHOOSE YOUR SYSTEM\n\nINSTALL THE DESKTOP APP\n\nv0.1.4 is ready.\n\nDownload for Linux\nOther system\nWindows\nmacOS — Apple Silicon\nmacOS — Intel\nLinux\n\nDESKTOP WALKTHROUGH\n\nCHOOSE WHAT HAPPENS TO RECOGNISED TEXT\n\nThese three frames show the complete capture.\n\nFIELD STOCK\nR-1082  Valve housing\nR-1083  Seal kit\n1. SELECT A REGION\nDraw around the text that the other app does not expose.\nRECOGNISED TEXT\nR-1082  Valve housing  HOLD\nR-1083  Seal kit  READY\n2. REVIEW THE TEXT\nCorrect the editable result before using it.\nRESULT READY\nSpeak text\nCopy text\nPin result\n3. CHOOSE AN ACTION\nHear the text, copy it, or keep it visible.\n\nTHREE STEPS\n\nHOW POINT & SPEAK WORKS\n01\nUSE THE SHORTCUT\n\nThe configured shortcut is Ctrl+Shift+Space. The capture window lets you choose a region.\n\n02\nCHOOSE THE TEXT\n\nText recognition processes the region you draw on your computer.\n\n03\nSPEAK, COPY, OR PIN\n\nEdit the result, change its speech speed, or keep it visible.\n\nWHAT THE APP CAN SEE AND KEEP\n\nSCREEN CAPTURE STARTS WHEN YOU ASK\n\nA capture begins after you choose Capture screen. Captured images are not uploaded.\n\nCaptures stay in memory and disappear when the capture window reloads or closes.\n\nThis is an assistive utility, not a safety or medical product.\n\nRead the privacy note\n\nOPTIONAL PAGE THEMES\n\n$19 SUPPORTER LICENSE ADDS TWO THEMES\n\nThe free app includes capture, text recognition, speech, copy, and pin. The one-time supporter license adds two blueprint page themes.\n\n$19\none-time purchase\nBuy a supporter license\nActivate supporter license",
+        "primary": "Try it with sample data",
+        "primaryHref": "/?demo=1",
+        "h1Count": 1,
+        "mainCount": 1,
+        "lang": "en"
+      },
+      "seeded": "R-1082  Valve housing  HOLD\nR-1083  Seal kit, 40 mm  READY\nR-1084  Pressure gauge  CHECK",
+      "boundaryText": "R-9999 — Valve pressure: 42.5 PSI\nSecond editable row.",
+      "spoken": {
+        "text": "R-9999 — Valve pressure: 42.5 PSI\nSecond editable row.",
+        "rate": 2
+      },
+      "storage": {
+        "release:v1": "{\"time\":1787995528776,\"data\":{\"url\":\"https://api.github.com/repos/B-Divyesh/sf-point-and-speak-desktop/releases/378926201\",\"assets_url\":\"https://api.github.com/repos/B-Divyesh/sf-point-and-speak-desktop/releases/378926201/assets\",\"upload_url\":\"https://uploads.github.com/repos/B-Divyesh/sf-point-and-speak-desktop/releases/378926201/assets{?name,label}\",\"html_url\":\"https://github.com/B-Divyesh/sf-point-and-speak-desktop/releases/tag/v0.1.4\",\"id\":378926201,\"author\":{\"login\":\"github-actions[bot]\",\"id\":41898282,\"node_id\":\"MDM6Qm90NDE4OTgyODI=\",\"avatar_url\":\"https://avatars.githubusercontent.com/in/15368?v=4\",\"gravatar_id\":\"\",\"url\":\"https://api.github.com/users/github-actions%5Bbot%5D\",\"html_url\":\"https://github.com/apps/github-actions\",\"followers_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/followers\",\"following_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/following{/other_user}\",\"gists_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/gists{/gist_id}\",\"starred_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/starred{/owner}{/repo}\",\"subscriptions_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/subscriptions\",\"organizations_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/orgs\",\"repos_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/repos\",\"events_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/events{/privacy}\",\"received_events_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/received_events\",\"type\":\"Bot\",\"user_view_type\":\"public\",\"site_admin\":false},\"node_id\":\"RE_kwDOUG_sb84WlfR5\",\"tag_name\":\"v0.1.4\",\"target_commitish\":\"6a1d310f16a62861a26eafd267adabc142a6af6e\",\"name\":\"Point & Speak Desktop v0.1.4\",\"draft\":false,\"immutable\":false,\"prerelease\":false,\"created_at\":\"2026-08-29T08:38:06Z\",\"updated_at\":\"2026-08-29T08:45:56Z\",\"published_at\":\"2026-08-29T08:43:17Z\",\"assets\":[{\"url\":\"https://api.github.com/repos/B-Divyesh/sf-point-and-speak-desktop/releases/assets/534991776\",\"id\":534991776,\"node_id\":\"RA_kwDOUG_sb84f41Og\",\"name\":\"latest.json\",\"label\":\"\",\"uploader\":{\"login\":\"github-actions[bot]\",\"id\":41898282,\"node_id\":\"MDM6Qm90NDE4OTgyODI=\",\"avatar_url\":\"https://avatars.githubusercontent.com/in/15368?v=4\",\"gravatar_id\":\"\",\"url\":\"https://api.github.com/users/github-actions%5Bbot%5D\",\"html_url\":\"https://github.com/apps/github-actions\",\"followers_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/followers\",\"following_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/following{/other_user}\",\"gists_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/gists{/gist_id}\",\"starred_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/starred{/owner}{/repo}\",\"subscriptions_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/subscriptions\",\"organizations_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/orgs\",\"repos_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/repos\",\"events_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/events{/privacy}\",\"received_events_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/received_events\",\"type\":\"Bot\",\"user_view_type\":\"public\",\"site_admin\":false},\"content_type\":\"application/json\",\"state\":\"uploaded\",\"size\":1665,\"digest\":\"sha256:7ae86e760a15415ed7fb00b57bd4e3c34dfc7629c582f3101a298cf0b019e393\",\"download_count\":0,\"created_at\":\"2026-08-29T08:45:56Z\",\"updated_at\":\"2026-08-29T08:45:56Z\",\"browser_download_url\":\"https://github.com/B-Divyesh/sf-point-and-speak-desktop/releases/download/v0.1.4/latest.json\"},{\"url\":\"https://api.github.com/repos/B-Divyesh/sf-point-and-speak-desktop/releases/assets/534989213\",\"id\":534989213,\"node_id\":\"RA_kwDOUG_sb84f40md\",\"name\":\"Point.Speak.Desktop_0.1.4_aarch64.dmg\",\"label\":\"\",\"uploader\":{\"login\":\"github-actions[bot]\",\"id\":41898282,\"node_id\":\"MDM6Qm90NDE4OTgyODI=\",\"avatar_url\":\"https://avatars.githubusercontent.com/in/15368?v=4\",\"gravatar_id\":\"\",\"url\":\"https://api.github.com/users/github-actions%5Bbot%5D\",\"html_url\":\"https://github.com/apps/github-actions\",\"followers_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/followers\",\"following_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/following{/other_user}\",\"gists_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/gists{/gist_id}\",\"starred_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/starred{/owner}{/repo}\",\"subscriptions_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/subscriptions\",\"organizations_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/orgs\",\"repos_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/repos\",\"events_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/events{/privacy}\",\"received_events_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/received_events\",\"type\":\"Bot\",\"user_view_type\":\"public\",\"site_admin\":false},\"content_type\":\"application/zip\",\"state\":\"uploaded\",\"size\":13545526,\"digest\":\"sha256:71d63e06d5083379e8cfa537018d8da3359c347db18b73e843594ede5f25e740\",\"download_count\":1,\"created_at\":\"2026-08-29T08:43:17Z\",\"updated_at\":\"2026-08-29T08:43:18Z\",\"browser_download_url\":\"https://github.com/B-Divyesh/sf-point-and-speak-desktop/releases/download/v0.1.4/Point.Speak.Desktop_0.1.4_aarch64.dmg\"},{\"url\":\"https://api.github.com/repos/B-Divyesh/sf-point-and-speak-desktop/releases/assets/534990611\",\"id\":534990611,\"node_id\":\"RA_kwDOUG_sb84f408T\",\"name\":\"Point.Speak.Desktop_0.1.4_amd64.AppImage\",\"label\":\"\",\"uploader\":{\"login\":\"github-actions[bot]\",\"id\":41898282,\"node_id\":\"MDM6Qm90NDE4OTgyODI=\",\"avatar_url\":\"https://avatars.githubusercontent.com/in/15368?v=4\",\"gravatar_id\":\"\",\"url\":\"https://api.github.com/users/github-actions%5Bbot%5D\",\"html_url\":\"https://github.com/apps/github-actions\",\"followers_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/followers\",\"following_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/following{/other_user}\",\"gists_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/gists{/gist_id}\",\"starred_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/starred{/owner}{/repo}\",\"subscriptions_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/subscriptions\",\"organizations_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/orgs\",\"repos_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/repos\",\"events_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/events{/privacy}\",\"received_events_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/received_events\",\"type\":\"Bot\",\"user_view_type\":\"public\",\"site_admin\":false},\"content_type\":\"application/zip\",\"state\":\"uploaded\",\"size\":86649336,\"digest\":\"sha256:168532b845e7580ea168b9f03357ebceab2d7147a3892e40fb090a95daefe921\",\"download_count\":1,\"created_at\":\"2026-08-29T08:44:40Z\",\"updated_at\":\"2026-08-29T08:44:42Z\",\"browser_download_url\":\"https://github.com/B-Divyesh/sf-point-and-speak-desktop/releases/download/v0.1.4/Point.Speak.Desktop_0.1.4_amd64.AppImage\"},{\"url\":\"https://api.github.com/repos/B-Divyesh/sf-point-and-speak-desktop/releases/assets/534990596\",\"id\":534990596,\"node_id\":\"RA_kwDOUG_sb84f408E\",\"name\":\"Point.Speak.Desktop_0.1.4_amd64.deb\",\"label\":\"\",\"uploader\":{\"login\":\"github-actions[bot]\",\"id\":41898282,\"node_id\":\"MDM6Qm90NDE4OTgyODI=\",\"avatar_url\":\"https://avatars.githubusercontent.com/in/15368?v=4\",\"gravatar_id\":\"\",\"url\":\"https://api.github.com/users/github-actions%5Bbot%5D\",\"html_url\":\"https://github.com/apps/github-actions\",\"followers_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/followers\",\"following_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/following{/other_user}\",\"gists_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/gists{/gist_id}\",\"starred_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/starred{/owner}{/repo}\",\"subscriptions_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/subscriptions\",\"organizations_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/orgs\",\"repos_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/repos\",\"events_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/events{/privacy}\",\"received_events_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/received_events\",\"type\":\"Bot\",\"user_view_type\":\"public\",\"site_admin\":false},\"content_type\":\"application/zip\",\"state\":\"uploaded\",\"size\":9269096,\"digest\":\"sha256:a4975ad3cf653751910273e68893aa41b8dd9b7543efda2178a4c0c236df7bce\",\"download_count\":2,\"created_at\":\"2026-08-29T08:44:39Z\",\"updated_at\":\"2026-08-29T08:44:40Z\",\"browser_download_url\":\"https://github.com/B-Divyesh/sf-point-and-speak-desktop/releases/download/v0.1.4/Point.Speak.Desktop_0.1.4_amd64.deb\"},{\"url\":\"https://api.github.com/repos/B-Divyesh/sf-point-and-speak-desktop/releases/assets/534991552\",\"id\":534991552,\"node_id\":\"RA_kwDOUG_sb84f41LA\",\"name\":\"Point.Speak.Desktop_0.1.4_x64-setup.exe\",\"label\":\"\",\"uploader\":{\"login\":\"github-actions[bot]\",\"id\":41898282,\"node_id\":\"MDM6Qm90NDE4OTgyODI=\",\"avatar_url\":\"https://avatars.githubusercontent.com/in/15368?v=4\",\"gravatar_id\":\"\",\"url\":\"https://api.github.com/users/github-actions%5Bbot%5D\",\"html_url\":\"https://github.com/apps/github-actions\",\"followers_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/followers\",\"following_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/following{/other_user}\",\"gists_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/gists{/gist_id}\",\"starred_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/starred{/owner}{/repo}\",\"subscriptions_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/subscriptions\",\"organizations_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/orgs\",\"repos_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/repos\",\"events_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/events{/privacy}\",\"received_events_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/received_events\",\"type\":\"Bot\",\"user_view_type\":\"public\",\"site_admin\":false},\"content_type\":\"application/zip\",\"state\":\"uploaded\",\"size\":6861919,\"digest\":\"sha256:e21fcb6006cebee75279f209b3f418f8a548ef253d3d52450be9b84c9b3a4816\",\"download_count\":1,\"created_at\":\"2026-08-29T08:45:40Z\",\"updated_at\":\"2026-08-29T08:45:41Z\",\"browser_download_url\":\"https://github.com/B-Divyesh/sf-point-and-speak-desktop/releases/download/v0.1.4/Point.Speak.Desktop_0.1.4_x64-setup.exe\"},{\"url\":\"https://api.github.com/repos/B-Divyesh/sf-point-and-speak-desktop/releases/assets/534990298\",\"id\":534990298,\"node_id\":\"RA_kwDOUG_sb84f403a\",\"name\":\"Point.Speak.Desktop_0.1.4_x64.dmg\",\"label\":\"\",\"uploader\":{\"login\":\"github-actions[bot]\",\"id\":41898282,\"node_id\":\"MDM6Qm90NDE4OTgyODI=\",\"avatar_url\":\"https://avatars.githubusercontent.com/in/15368?v=4\",\"gravatar_id\":\"\",\"url\":\"https://api.github.com/users/github-actions%5Bbot%5D\",\"html_url\":\"https://github.com/apps/github-actions\",\"followers_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/followers\",\"following_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/following{/other_user}\",\"gists_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/gists{/gist_id}\",\"starred_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/starred{/owner}{/repo}\",\"subscriptions_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/subscriptions\",\"organizations_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/orgs\",\"repos_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/repos\",\"events_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/events{/privacy}\",\"received_events_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/received_events\",\"type\":\"Bot\",\"user_view_type\":\"public\",\"site_admin\":false},\"content_type\":\"application/zip\",\"state\":\"uploaded\",\"size\":13229254,\"digest\":\"sha256:71c6418c73719a14c9ee7ed475c16fee71f9636335ab14affe3d51a77d57ec26\",\"download_count\":1,\"created_at\":\"2026-08-29T08:44:17Z\",\"updated_at\":\"2026-08-29T08:44:19Z\",\"browser_download_url\":\"https://github.com/B-Divyesh/sf-point-and-speak-desktop/releases/download/v0.1.4/Point.Speak.Desktop_0.1.4_x64.dmg\"},{\"url\":\"https://api.github.com/repos/B-Divyesh/sf-point-and-speak-desktop/releases/assets/534991775\",\"id\":534991775,\"node_id\":\"RA_kwDOUG_sb84f41Of\",\"name\":\"PROVENANCE.json\",\"label\":\"\",\"uploader\":{\"login\":\"github-actions[bot]\",\"id\":41898282,\"node_id\":\"MDM6Qm90NDE4OTgyODI=\",\"avatar_url\":\"https://avatars.githubusercontent.com/in/15368?v=4\",\"gravatar_id\":\"\",\"url\":\"https://api.github.com/users/github-actions%5Bbot%5D\",\"html_url\":\"https://github.com/apps/github-actions\",\"followers_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/followers\",\"following_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/following{/other_user}\",\"gists_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/gists{/gist_id}\",\"starred_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/starred{/owner}{/repo}\",\"subscriptions_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/subscriptions\",\"organizations_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/orgs\",\"repos_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/repos\",\"events_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/events{/privacy}\",\"received_events_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/received_events\",\"type\":\"Bot\",\"user_view_type\":\"public\",\"site_admin\":false},\"content_type\":\"application/json\",\"state\":\"uploaded\",\"size\":1099,\"digest\":\"sha256:08a498b03f80d8dc650877a3c17445a2fc32bf5db8dea9d9be2157d1152f6489\",\"download_count\":0,\"created_at\":\"2026-08-29T08:45:56Z\",\"updated_at\":\"2026-08-29T08:45:56Z\",\"browser_download_url\":\"https://github.com/B-Divyesh/sf-point-and-speak-desktop/releases/download/v0.1.4/PROVENANCE.json\"},{\"url\":\"https://api.github.com/repos/B-Divyesh/sf-point-and-speak-desktop/releases/assets/534991774\",\"id\":534991774,\"node_id\":\"RA_kwDOUG_sb84f41Oe\",\"name\":\"SHA256SUMS\",\"label\":\"\",\"uploader\":{\"login\":\"github-actions[bot]\",\"id\":41898282,\"node_id\":\"MDM6Qm90NDE4OTgyODI=\",\"avatar_url\":\"https://avatars.githubusercontent.com/in/15368?v=4\",\"gravatar_id\":\"\",\"url\":\"https://api.github.com/users/github-actions%5Bbot%5D\",\"html_url\":\"https://github.com/apps/github-actions\",\"followers_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/followers\",\"following_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/following{/other_user}\",\"gists_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/gists{/gist_id}\",\"starred_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/starred{/owner}{/repo}\",\"subscriptions_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/subscriptions\",\"organizations_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/orgs\",\"repos_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/repos\",\"events_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/events{/privacy}\",\"received_events_url\":\"https://api.github.com/users/github-actions%5Bbot%5D/received_events\",\"type\":\"Bot\",\"user_view_type\":\"public\",\"site_admin\":false},\"content_type\":\"application/octet-stream\",\"state\":\"uploaded\",\"size\":679,\"digest\":\"sha256:b0ac56c0c33b4a88dd3fc1f20ee02bf54a1ed8526d1c772636657d5a0287a230\",\"download_count\":1,\"created_at\":\"2026-08-29T08:45:56Z\",\"updated_at\":\"2026-08-29T08:45:56Z\",\"browser_download_url\":\"https://github.com/B-Divyesh/sf-point-and-speak-desktop/releases/download/v0.1.4/SHA256SUMS\"}],\"tarball_url\":\"https://api.github.com/repos/B-Divyesh/sf-point-and-speak-desktop/tarball/v0.1.4\",\"zipball_url\":\"https://api.github.com/repos/B-Divyesh/sf-point-and-speak-desktop/zipball/v0.1.4\",\"body\":\"Unsigned pilot installers. Screen capture and OCR run on the device.\\nSource commit: `6a1d310f16a62861a26eafd267adabc142a6af6e`\"}}",
+        "verification:sentinel": "real-data"
+      },
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    "demoPrivacy": {
+      "pass": true,
+      "requestCount": 3,
+      "crossOrigin": []
+    },
+    "mobileTargets": {
+      "pass": true,
+      "targets": [
+        {
+          "label": "Skip to main content",
+          "tag": "A",
+          "width": 194.578125,
+          "height": 44.796875
+        },
+        {
+          "label": "Point and Speak Desktop home",
+          "tag": "A",
+          "width": 173.90625,
+          "height": 44
+        },
+        {
+          "label": "Demo",
+          "tag": "A",
+          "width": 51.796875,
+          "height": 44
+        },
+        {
+          "label": "Privacy",
+          "tag": "A",
+          "width": 66.25,
+          "height": 44
+        },
+        {
+          "label": "Reset demo",
+          "tag": "BUTTON",
+          "width": 106.734375,
+          "height": 44
+        },
+        {
+          "label": "Start for real",
+          "tag": "A",
+          "width": 101.578125,
+          "height": 44
+        },
+        {
+          "label": "TEXTAREA",
+          "tag": "TEXTAREA",
+          "width": 309.21875,
+          "height": 128
+        },
+        {
+          "label": "Speak text",
+          "tag": "BUTTON",
+          "width": 150.609375,
+          "height": 50.796875
+        },
+        {
+          "label": "Copy text",
+          "tag": "BUTTON",
+          "width": 150.609375,
+          "height": 50.796875
+        },
+        {
+          "label": "Pin result",
+          "tag": "BUTTON",
+          "width": 309.21875,
+          "height": 50.796875
+        },
+        {
+          "label": "INPUT",
+          "tag": "INPUT",
+          "width": 309.21875,
+          "height": 44
+        },
+        {
+          "label": "Replay this sample region",
+          "tag": "BUTTON",
+          "width": 327.21875,
+          "height": 330
+        },
+        {
+          "label": "Privacy",
+          "tag": "A",
+          "width": 47.078125,
+          "height": 44
+        },
+        {
+          "label": "Terms",
+          "tag": "A",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Built by Param Factory (external site)",
+          "tag": "A",
+          "width": 146.515625,
+          "height": 44
+        }
+      ],
+      "undersized": []
+    },
+    "keyboard": {
+      "pass": true,
+      "focusStyle": {
+        "outlineWidth": "3px",
+        "outlineStyle": "solid",
+        "outlineColor": "rgb(168, 68, 22)"
+      }
+    },
+    "reducedMotion": {
+      "pass": true,
+      "mediaMatches": true,
+      "animations": 0,
+      "longestTransitionMs": 0,
+      "longestAnimationMs": 0
+    },
+    "narrowReflow": {
+      "pass": true,
+      "width": 320,
+      "overflow": 0
+    },
+    "offline": {
+      "pass": true,
+      "caches": [
+        "point-speak-v5"
+      ],
+      "offlineHeading": "Sample text is ready",
+      "seeded": "R-1082  Valve housing  HOLD\nR-1083  Seal kit, 40 mm  READY\nR-1084  Pressure gauge  CHECK"
+    }
+  },
+  "routes": [
+    {
+      "viewport": "desktop",
+      "path": "/",
+      "status": 200,
+      "title": "Point & Speak Desktop — Read screen text aloud",
+      "heading": [
+        "Read selected screen text aloud"
+      ],
+      "mainCount": 1,
+      "axeSeriousCritical": [],
+      "dimensions": {
+        "width": 1440,
+        "scrollWidth": 1440
+      },
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "viewport": "desktop",
+      "path": "/?demo=1",
+      "status": 200,
+      "title": "Demo — Point & Speak Desktop",
+      "heading": [
+        "Sample text is ready"
+      ],
+      "mainCount": 1,
+      "axeSeriousCritical": [],
+      "dimensions": {
+        "width": 1440,
+        "scrollWidth": 1440
+      },
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "viewport": "desktop",
+      "path": "/demo",
+      "status": 200,
+      "title": "Demo — Point & Speak Desktop",
+      "heading": [
+        "Sample text is ready"
+      ],
+      "mainCount": 1,
+      "axeSeriousCritical": [],
+      "dimensions": {
+        "width": 1440,
+        "scrollWidth": 1440
+      },
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "viewport": "desktop",
+      "path": "/privacy",
+      "status": 200,
+      "title": "Privacy — Point & Speak Desktop",
+      "heading": [
+        "Your screen stays on your computer"
+      ],
+      "mainCount": 1,
+      "axeSeriousCritical": [],
+      "dimensions": {
+        "width": 1440,
+        "scrollWidth": 1440
+      },
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "viewport": "desktop",
+      "path": "/terms",
+      "status": 200,
+      "title": "Terms — Point & Speak Desktop",
+      "heading": [
+        "Use Point & Speak with care"
+      ],
+      "mainCount": 1,
+      "axeSeriousCritical": [],
+      "dimensions": {
+        "width": 1440,
+        "scrollWidth": 1440
+      },
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "viewport": "desktop",
+      "path": "/verification-5-missing",
+      "status": 404,
+      "title": "Page not found — Point & Speak Desktop",
+      "heading": [
+        "Page not found"
+      ],
+      "mainCount": 1,
+      "axeSeriousCritical": [],
+      "dimensions": {
+        "width": 1440,
+        "scrollWidth": 1440
+      },
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "viewport": "mobile",
+      "path": "/",
+      "status": 200,
+      "title": "Point & Speak Desktop — Read screen text aloud",
+      "heading": [
+        "Read selected screen text aloud"
+      ],
+      "mainCount": 1,
+      "axeSeriousCritical": [],
+      "dimensions": {
+        "width": 390,
+        "scrollWidth": 390
+      },
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "viewport": "mobile",
+      "path": "/?demo=1",
+      "status": 200,
+      "title": "Demo — Point & Speak Desktop",
+      "heading": [
+        "Sample text is ready"
+      ],
+      "mainCount": 1,
+      "axeSeriousCritical": [],
+      "dimensions": {
+        "width": 390,
+        "scrollWidth": 390
+      },
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "viewport": "mobile",
+      "path": "/demo",
+      "status": 200,
+      "title": "Demo — Point & Speak Desktop",
+      "heading": [
+        "Sample text is ready"
+      ],
+      "mainCount": 1,
+      "axeSeriousCritical": [],
+      "dimensions": {
+        "width": 390,
+        "scrollWidth": 390
+      },
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "viewport": "mobile",
+      "path": "/privacy",
+      "status": 200,
+      "title": "Privacy — Point & Speak Desktop",
+      "heading": [
+        "Your screen stays on your computer"
+      ],
+      "mainCount": 1,
+      "axeSeriousCritical": [],
+      "dimensions": {
+        "width": 390,
+        "scrollWidth": 390
+      },
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "viewport": "mobile",
+      "path": "/terms",
+      "status": 200,
+      "title": "Terms — Point & Speak Desktop",
+      "heading": [
+        "Use Point & Speak with care"
+      ],
+      "mainCount": 1,
+      "axeSeriousCritical": [],
+      "dimensions": {
+        "width": 390,
+        "scrollWidth": 390
+      },
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "viewport": "mobile",
+      "path": "/verification-5-missing",
+      "status": 404,
+      "title": "Page not found — Point & Speak Desktop",
+      "heading": [
+        "Page not found"
+      ],
+      "mainCount": 1,
+      "axeSeriousCritical": [],
+      "dimensions": {
+        "width": 390,
+        "scrollWidth": 390
+      },
+      "consoleErrors": [],
+      "pageErrors": []
+    }
+  ],
+  "requests": {
+    "homeAndDemo": [
+      "https://point-and-speak-desktop.sociobot.in/",
+      "https://point-and-speak-desktop.sociobot.in/assets/index-B6dQAZLL.js",
+      "https://point-and-speak-desktop.sociobot.in/assets/index-B-NvNVXz.css",
+      "https://api.github.com/repos/B-Divyesh/sf-point-and-speak-desktop/releases?per_page=1",
+      "https://point-and-speak-desktop.sociobot.in/assets/hero-blueprint.webp"
+    ],
+    "directDemo": [
+      "https://point-and-speak-desktop.sociobot.in/?demo=1",
+      "https://point-and-speak-desktop.sociobot.in/assets/index-B6dQAZLL.js",
+      "https://point-and-speak-desktop.sociobot.in/assets/index-B-NvNVXz.css"
+    ]
+  },
+  "pass": true
+}

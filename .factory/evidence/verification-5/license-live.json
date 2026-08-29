@@ -1,0 +1,24 @@
+{
+  "checkedAt": "2026-08-29T09:31:10.226Z",
+  "finalUrl": "https://point-and-speak-desktop.sociobot.in/",
+  "state": "License no longer active. You can keep using the free core.",
+  "storageKeys": [
+    "release:v1",
+    "sb_license_verdict:point-and-speak-desktop",
+    "sb_license:point-and-speak-desktop"
+  ],
+  "requests": [
+    "https://point-and-speak-desktop.sociobot.in/?license=verification-5-live-invalid",
+    "https://point-and-speak-desktop.sociobot.in/assets/index-B6dQAZLL.js",
+    "https://point-and-speak-desktop.sociobot.in/assets/index-B-NvNVXz.css",
+    "https://api.github.com/repos/B-Divyesh/sf-point-and-speak-desktop/releases?per_page=1",
+    "https://api.sociobot.in/api/v1/products/point-and-speak-desktop/verify?license=verification-5-live-invalid",
+    "https://point-and-speak-desktop.sociobot.in/assets/hero-blueprint.webp"
+  ],
+  "outside": [
+    "https://api.github.com/repos/B-Divyesh/sf-point-and-speak-desktop/releases?per_page=1",
+    "https://api.sociobot.in/api/v1/products/point-and-speak-desktop/verify?license=verification-5-live-invalid"
+  ],
+  "consoleErrors": [],
+  "pass": true
+}

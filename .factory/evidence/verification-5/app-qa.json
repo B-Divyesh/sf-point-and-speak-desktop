@@ -1,0 +1,173 @@
+{
+  "checkedAt": "2026-08-29T09:37:01.694Z",
+  "base": "http://127.0.0.1:4174",
+  "accessibilityAtInitialHover": [
+    {
+      "id": "color-contrast",
+      "impact": "serious",
+      "nodes": [
+        {
+          "target": [
+            "#capture"
+          ],
+          "summary": "Fix any of the following:\n  Element has insufficient color contrast of 1.11 (foreground color: #04191f, background color: #0a2429, font size: 12.0pt (16px), font weight: bold). Expected contrast ratio of 4.5:1"
+        }
+      ]
+    }
+  ],
+  "accessibilityAtResult": [
+    {
+      "id": "color-contrast",
+      "impact": "serious",
+      "help": "Elements must meet minimum color contrast ratio thresholds",
+      "nodes": [
+        {
+          "target": [
+            "#speak"
+          ],
+          "html": "<button id=\"speak\" class=\"tool tool--primary\" type=\"button\">Speak text</button>",
+          "summary": "Fix any of the following:\n  Element has insufficient color contrast of 1.49 (foreground color: #04191f, background color: #123b48, font size: 12.0pt (16px), font weight: bold). Expected contrast ratio of 4.5:1",
+          "data": [
+            {
+              "fgColor": "#04191f",
+              "bgColor": "#123b48",
+              "contrastRatio": 1.49,
+              "fontSize": "12.0pt (16px)",
+              "fontWeight": "bold",
+              "messageKey": null,
+              "expectedContrastRatio": "4.5:1"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "pass": false,
+  "desktop": {
+    "recognized": "Valve housing HOLD\nSeal kit, 40 mm READY\nPressure gauge CHECK\n\nSafety cover READY",
+    "corrected": "R-1083 Seal kit — READY\n42.5 PSI",
+    "requests": [
+      "http://127.0.0.1:4174/",
+      "http://127.0.0.1:4174/assets/index-DYFjgjRC.js",
+      "http://127.0.0.1:4174/assets/index-D0gTagle.css",
+      "blob:http://127.0.0.1:4174/1f9a422e-fa6d-4c10-9931-b6346679930b",
+      "http://127.0.0.1:4174/tesseract/worker.min.js",
+      "http://127.0.0.1:4174/tesseract/tesseract-core-simd-lstm.wasm.js",
+      "http://127.0.0.1:4174/tesseract/eng.traineddata.gz"
+    ],
+    "consoleErrors": [],
+    "pageErrors": [],
+    "axeSeriousCritical": [
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "tags": [
+          "cat.color",
+          "wcag2aa",
+          "wcag143",
+          "TTv5",
+          "TT13.c",
+          "EN-301-549",
+          "EN-9.1.4.3",
+          "ACT",
+          "RGAAv4",
+          "RGAA-3.2.1"
+        ],
+        "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+        "help": "Elements must meet minimum color contrast ratio thresholds",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=playwright",
+        "nodes": [
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#04191f",
+                  "bgColor": "#123b48",
+                  "contrastRatio": 1.49,
+                  "fontSize": "12.0pt (16px)",
+                  "fontWeight": "bold",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<button id=\"speak\" class=\"tool tool--primary\" type=\"button\">Speak text</button>",
+                    "target": [
+                      "#speak"
+                    ]
+                  },
+                  {
+                    "html": "<section id=\"result-panel\" class=\"result\" aria-labelledby=\"result-title\">",
+                    "target": [
+                      "#result-panel"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 1.49 (foreground color: #04191f, background color: #123b48, font size: 12.0pt (16px), font weight: bold). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<button id=\"speak\" class=\"tool tool--primary\" type=\"button\">Speak text</button>",
+            "target": [
+              "#speak"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 1.49 (foreground color: #04191f, background color: #123b48, font size: 12.0pt (16px), font weight: bold). Expected contrast ratio of 4.5:1"
+          }
+        ]
+      }
+    ]
+  },
+  "mobile": {
+    "dimensions": {
+      "width": 390,
+      "scrollWidth": 390
+    },
+    "controls": [
+      {
+        "label": "Skip to capture tools",
+        "width": 185.21875,
+        "height": 44
+      },
+      {
+        "label": "Close capture",
+        "width": 130.328125,
+        "height": 44
+      },
+      {
+        "label": "TEXTAREA",
+        "width": 324,
+        "height": 101
+      },
+      {
+        "label": "Speak text",
+        "width": 158,
+        "height": 44
+      },
+      {
+        "label": "Copy text",
+        "width": 158,
+        "height": 44
+      },
+      {
+        "label": "Pin result",
+        "width": 158,
+        "height": 54
+      },
+      {
+        "label": "Capture again",
+        "width": 158,
+        "height": 54
+      },
+      {
+        "label": "INPUT",
+        "width": 324,
+        "height": 46
+      }
+    ],
+    "undersized": []
+  }
+}
