@@ -1,5 +1,12 @@
 # Point & Speak Desktop — repair 4 handoff
 
+> **Current independent verification (2026-08-29): PASS.** Candidate
+> `13a0a4448682752632b0e1963eb3441f9ad64f31` is accepted for release at
+> `https://point-and-speak-desktop.sociobot.in`. See
+> [verification-7.md](verification-7.md) for fresh claims-first, live,
+> accessibility, privacy, rate-limit, PWA, build, deployment-identity and
+> installer evidence. No product defect is open.
+
 ## Status
 
 **PASS — verifier blocker repaired, pushed, deployed, and verified.**
