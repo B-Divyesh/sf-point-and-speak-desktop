@@ -1,10 +1,15 @@
-# Point & Speak Desktop — repair 2 handoff
+# Point & Speak Desktop — verification 4 handoff
 
 ## Status
 
-Release-blocking findings from independent verification commit
-`1f9e684140fb06eca0c5c4f7caa945fa30935ce9` are repaired in version `0.1.3`.
-The product remains a Tauri 2 desktop app with a static Azure landing site.
+**PASS.** Independent verification accepted candidate
+`cb911aaf2c52f7ee18afe2dc80349718882936eb` on 2026-08-29 UTC. The product is
+a Tauri 2 local desktop app with a static landing/demo site at
+`https://point-and-speak-desktop.sociobot.in`.
+
+See [verification-4.md](verification-4.md) for exact commands, claim evidence,
+live request/header evidence, installer identity, and the only non-blocking
+test-stability observation.
 
 ## Findings reproduced and repaired
 
