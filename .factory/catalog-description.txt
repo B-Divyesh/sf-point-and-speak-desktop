@@ -1,0 +1,1 @@
+Read text from a selected desktop region aloud, then edit, copy, or pin it.

@@ -96,8 +96,8 @@ mod tests {
     use super::*;
 
     #[test]
-    /// @claim:global-shortcut
-    fn claim_global_shortcut_is_ctrl_shift_space() {
+    /// @claim:configured-shortcut
+    fn claim_configured_shortcut_is_ctrl_shift_space() {
         assert_eq!(
             capture_shortcut(),
             Shortcut::new(Some(Modifiers::CONTROL | Modifiers::SHIFT), Code::Space)

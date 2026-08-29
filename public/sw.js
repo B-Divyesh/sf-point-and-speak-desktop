@@ -1,4 +1,4 @@
-const CACHE = "point-speak-v2";
+const CACHE = "point-speak-v3";
 const SHELL = ["/", "/demo", "/privacy", "/terms", "/assets/hero-blueprint-480.webp", "/favicon.svg"];
 async function precache() {
   const cache = await caches.open(CACHE);

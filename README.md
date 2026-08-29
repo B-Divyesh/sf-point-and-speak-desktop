@@ -1,25 +1,28 @@
 # Point & Speak Desktop
 
-Read any screen region aloud when an app gives your screen reader no useful
-text. Point & Speak is for low-vision users working with remote desktops,
-legacy software, games, and canvas-heavy interfaces.
+Read text from a selected screen region aloud. Point & Speak Desktop is for
+low-vision users when screen readers miss text in remote desktops, old
+software, games, or apps that draw text as images.
 
-Press `Ctrl+Shift+Space`, drag around text, then speak, copy, or pin the editable
-result. English OCR files ship with the app. Speech uses the computer's voice.
-Captures are not retained by default.
+The configured shortcut is `Ctrl+Shift+Space`. Draw a region, review the
+recognised text, then speak, copy, or pin it. English text-recognition files
+ship with the app. Capture, text recognition, speech, copy, and pin work
+without an account or supporter license.
 
-This is an assistive utility, not a safety or medical product. Check important
-names, numbers, instructions, and warnings against the original screen.
+Captured images stay on the computer and are not uploaded. Captures and pinned
+results stay in memory until the capture window reloads or closes. This is an
+assistive utility, not a safety or medical product. Check important text
+against the original screen.
 
-## Try the sandbox
+## Try the demo
 
-Open `/demo` or visit:
+Open the isolated sample directly:
 
-https://point-and-speak-desktop.sociobot.in/demo
+https://point-and-speak-desktop.sociobot.in/?demo=1
 
-Choose the marked sample region. The demo returns three fictional inventory
-rows, then lets you speak, copy, or pin them. Demo state stays in memory and is
-cleared with **Reset demo**. The demo reloads offline after the first visit.
+The first screen contains three fictional inventory rows as editable text.
+Speak, copy, pin, edit, or reset the result. Demo actions do not change saved
+license or release data. The demo reloads offline after the first visit.
 
 ## Develop
 
@@ -33,11 +36,8 @@ npm run dev:app      # desktop webview only
 npm run tauri dev    # complete desktop app
 ```
 
-Choose **Load sample region** in the first-run window to test the complete OCR
-flow without granting screen-capture permission.
-
-The local desktop build includes Tesseract's Apache-2.0-licensed English fast
-model. No OCR service or account is required.
+Choose **Load sample region** to test the bundled recognition path without
+granting screen-capture permission.
 
 ## Test and build
 
@@ -47,56 +47,56 @@ cargo fmt --manifest-path src-tauri/Cargo.toml -- --check
 cargo test --manifest-path src-tauri/Cargo.toml
 npm run typecheck
 npm run lint
-npm run test:checkout # live $19 catalog and hosted checkout redirect
+npm run test:checkout
 npm run build        # dist/app and dist/site
-npm run build:site   # exact static deploy command; output is dist/site
+npm run build:site   # static deploy output in dist/site
 ```
 
-The test suite opens fresh site and app contexts for product claims. It checks
-the real bundled OCR path, both color schemes, offline reload, the 390 px
-layout, and route semantics. See [.factory/claims.json](.factory/claims.json)
-for each claim and its exact command.
+Every public product claim and its isolated command are listed in
+[`.factory/claims.json`](.factory/claims.json).
 
 ## Install and release
 
-Tagged `v*` releases start the GitHub Actions matrix. It builds unsigned macOS
-Intel and Apple Silicon DMGs, a Windows MSI or EXE, and Linux AppImage and DEB
-files. A final job publishes `SHA256SUMS` and `latest.json`.
+Download the current installer from the
+[GitHub Releases page](https://github.com/B-Divyesh/sf-point-and-speak-desktop/releases).
 
-The landing page detects the visitor's system and reads the latest release
-through the CORS-enabled GitHub API. It offers separate macOS downloads for
-Intel and Apple Silicon. When no release exists, it links to the release page
-without throwing an error.
-
-After the first tagged release, Linux users can run:
+Linux:
 
 ```sh
 curl -fsSL https://point-and-speak-desktop.sociobot.in/install.sh | sh
 ```
 
-Windows PowerShell users can run:
+The Linux script checks the downloaded AppImage against its published SHA256
+checksum before installing it.
+
+Windows PowerShell:
 
 ```powershell
 irm https://point-and-speak-desktop.sociobot.in/install.ps1 | iex
 ```
 
-Both scripts verify the release checksum before installing. Pilot installers
-are unsigned, so the operating system may ask for confirmation.
+Maintainers create desktop releases from tags with
+`.github/workflows/release.yml`. The static site deploys from `dist/site`.
 
-## Privacy and payment
+## Privacy, payment, and policies
 
-The app has no telemetry and no cloud image upload. The optional $19 supporter
-license uses Sociobot's hosted checkout and verification API. The free app
-keeps capture, OCR, speech, copy, and pin available. See `/privacy` and `/terms`
-for the plain-language policies.
+The website has no advertising, user tracking, or third-party scripts. The
+download page asks GitHub for release data. A supporter license token and its
+last verification are stored in browser storage and sent only to Sociobot for
+verification.
+
+The optional supporter license costs $19 once and adds two blueprint page
+themes. Payment uses Sociobot checkout. The free tools remain available
+without a license. Read the live [privacy policy](/privacy) and
+[terms](/terms).
 
 ## Repository map
 
-- `app/` — Tauri webview and local OCR interaction
-- `src-tauri/` — native screenshot and global-shortcut core
-- `site/` — static landing site and demo sandbox
-- `public/tesseract/` — bundled worker, WASM core, and English OCR model
-- `.factory/` — brief, design thesis, claims, copy audit, demo notes, handoff
+- `app/` — Tauri webview and local text recognition
+- `src-tauri/` — native screenshot and shortcut core
+- `site/` — static landing site and isolated demo
+- `public/tesseract/` — bundled recognition worker, WASM core, and English data
+- `.factory/` — brief, design thesis, claims, copy audit, demo notes, and handoff
 
-MIT licensed. Generated artwork provenance is recorded in
-[.factory/design.md](.factory/design.md).
+The project is MIT licensed. Generated artwork provenance is recorded in
+[`.factory/design.md`](.factory/design.md).

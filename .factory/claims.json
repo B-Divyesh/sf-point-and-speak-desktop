@@ -1,87 +1,122 @@
 [
   {
-    "id": "sample-region",
-    "claim": "The demo turns a selected sample region into editable text.",
-    "where": "demo capture sheet",
-    "test": "npm test -- --grep @claim:sample-region",
-    "sandbox": "fresh browser context at /demo; activate the shipped inventory region and assert useful rows appear"
+    "id": "selected-region-speech",
+    "claim": "The app turns text in a selected screen region into editable text that can be spoken with the device voice.",
+    "where": "landing headline, desktop app, and README",
+    "test": "npm test -- --grep @claim:selected-region-speech",
+    "sandbox": "fresh desktop webview; load the bundled screen fixture, select its centre region, assert useful editable rows and excluded header text, then assert the result reaches the speech API"
   },
   {
     "id": "local-only",
-    "claim": "Screen images stay on your computer, with no cloud image upload or app telemetry.",
+    "claim": "Captured screen images stay on the computer and are not uploaded, and the app sends no telemetry.",
     "where": "landing facts, privacy page, and README",
     "test": "npm test -- --grep @claim:local-only",
-    "sandbox": "fresh desktop-app webview; run bundled sample capture through real local OCR, pin it, and assert no cross-origin requests"
+    "sandbox": "fresh desktop webview; run bundled local recognition, then assert that the complete flow makes no cross-origin request"
   },
   {
-    "id": "speak",
-    "claim": "Recognised text can be spoken with the device voice.",
-    "where": "landing workflow and demo Speak text button",
-    "test": "npm test -- --grep @claim:speak",
-    "sandbox": "fresh browser context at /demo with a speech synthesis spy; assert the recognised text reaches the device speech API"
+    "id": "speech-speed",
+    "claim": "The selected speech speed is passed to the device speech API.",
+    "where": "landing workflow and desktop result control",
+    "test": "npm test -- --grep @claim:speech-speed",
+    "sandbox": "fresh desktop webview; recognise the sample, set speech speed to 1.5, and assert the speech utterance carries rate 1.5"
   },
   {
     "id": "pin-result",
     "claim": "Recognised text can be pinned and removed.",
     "where": "landing workflow and demo Pin result button",
     "test": "npm test -- --grep @claim:pin-result",
-    "sandbox": "fresh browser context at /demo; pin the sample result, assert its contents, then remove it"
+    "sandbox": "fresh demo at ?demo=1; pin the seeded result, assert its contents, then remove it"
+  },
+  {
+    "id": "demo-ready",
+    "claim": "The demo opens with a realistic editable result already visible.",
+    "where": "first-screen demo action and demo page",
+    "test": "npm test -- --grep @claim:demo-ready",
+    "sandbox": "fresh browser context; activate the landing action once and assert the editable inventory result and result actions are visible"
   },
   {
     "id": "no-demo-storage",
-    "claim": "Demo sample data is not saved.",
-    "where": "first action and persistent demo banner",
+    "claim": "Demo sample data is not saved and demo actions do not change real browser data.",
+    "where": "first action, demo banner, README, and demo notes",
     "test": "npm test -- --grep @claim:no-demo-storage",
-    "sandbox": "fresh browser context at /demo; use and reset the demo, then assert no demo storage keys and no visible result"
+    "sandbox": "fresh context with sentinel real keys; edit, pin, and reset the demo, then assert no demo keys and unchanged real values"
   },
   {
     "id": "capture-memory",
-    "claim": "App captures and pinned results stay in memory and are discarded when the capture window reloads or closes.",
+    "claim": "App captures and pinned results stay in memory and disappear when the capture window reloads or closes.",
     "where": "landing privacy boundary, privacy page, and README",
     "test": "npm test -- --grep @claim:capture-memory",
-    "sandbox": "fresh desktop-app webview; run the real bundled OCR path, pin the result, assert capture state is absent from localStorage, reload, and assert capture and result are gone"
+    "sandbox": "fresh desktop webview; run bundled recognition, pin the result, assert no stored capture state, reload, and assert the capture and result are gone"
   },
   {
-    "id": "global-shortcut",
-    "claim": "Ctrl+Shift+Space opens the capture flow.",
+    "id": "configured-shortcut",
+    "claim": "The configured capture shortcut is Ctrl+Shift+Space.",
     "where": "landing workflow and README",
-    "test": "cargo test --manifest-path src-tauri/Cargo.toml claim_global_shortcut_is_ctrl_shift_space",
-    "sandbox": "native unit test asserts the shortcut registered by the runtime is exactly Control+Shift+Space"
+    "test": "cargo test --manifest-path src-tauri/Cargo.toml claim_configured_shortcut_is_ctrl_shift_space",
+    "sandbox": "native unit test compares the shortcut registered by the runtime with Control+Shift+Space"
   },
   {
-    "id": "free-core",
-    "claim": "Capture, OCR, speech, copy, and pin work without a license.",
-    "where": "landing facts, paid tier, terms, and README",
-    "test": "npm test -- --grep @claim:free-core",
-    "sandbox": "fresh desktop-app webview with no license; run the real sample OCR path and assert speech, copy, and pin all work"
+    "id": "account-free-core",
+    "claim": "Capture, text recognition, speech, copy, and pin work without an account or supporter license.",
+    "where": "landing facts, privacy page, terms, and README",
+    "test": "npm test -- --grep @claim:account-free-core",
+    "sandbox": "fresh desktop webview with no auth or license state; run bundled recognition and assert speech, copy, and pin work with no account or license request"
   },
   {
-    "id": "checksum-installers",
-    "claim": "Install scripts verify the downloaded app against the published SHA256 checksum before installing.",
-    "where": "README install section",
-    "test": "npm test -- --grep @claim:checksum-installers",
-    "sandbox": "local fixture release; assert a matching Linux artifact installs and a tampered artifact is rejected without creating the command link"
+    "id": "linux-checksum-installer",
+    "claim": "The Linux install script verifies the AppImage against its published SHA256 checksum before installing.",
+    "where": "README Linux install section",
+    "test": "npm test -- --grep @claim:linux-checksum-installer",
+    "sandbox": "local fixture release; assert a matching AppImage installs and a tampered file is rejected without creating the command link"
   },
   {
     "id": "offline-reload",
     "claim": "The demo works offline after the first visit.",
-    "where": "README and offline product fact",
+    "where": "README demo section",
     "test": "npm test -- --grep @claim:offline-reload",
-    "sandbox": "fresh browser context; load /demo, wait for the service worker, set the context offline, reload, and assert the demo heading"
+    "sandbox": "fresh browser context; load ?demo=1, wait for the service worker, set the context offline, reload, and assert the seeded result"
   },
   {
-    "id": "bundled-ocr",
-    "claim": "English OCR files ship with the app.",
+    "id": "bundled-recognition",
+    "claim": "English text-recognition files ship with the app.",
     "where": "landing facts and README",
-    "test": "npm test -- --grep @claim:bundled-ocr",
-    "sandbox": "fresh browser context; fetch the same-origin English language model and OCR worker and assert both contain data"
+    "test": "npm test -- --grep @claim:bundled-recognition",
+    "sandbox": "fetch the same-origin English language data and recognition worker, then assert both contain bundled data"
   },
   {
     "id": "supporter-themes",
     "claim": "A valid supporter license activates two blueprint page themes.",
     "where": "landing paid tier",
     "test": "npm test -- --grep @claim:supporter-themes",
-    "sandbox": "fresh browser context with a recorded valid license response; select the second theme and assert its palette is applied"
+    "sandbox": "fresh context with a recorded valid license response; select the second theme and assert its palette is applied"
+  },
+  {
+    "id": "license-storage",
+    "claim": "A supporter license token and its last check are stored in browser storage and sent only to Sociobot for verification.",
+    "where": "privacy page and README",
+    "test": "npm test -- --grep @claim:license-storage",
+    "sandbox": "fresh context with an incoming token and recorded Sociobot response; assert exact storage keys, stripped URL, and the single verification destination"
+  },
+  {
+    "id": "website-no-tracking",
+    "claim": "The website has no advertising, user tracking, or third-party scripts.",
+    "where": "privacy page and README",
+    "test": "npm test -- --grep @claim:website-no-tracking",
+    "sandbox": "fresh contexts crawl all routes; assert script origins, request destinations, cookies, and storage contain no tracking services or identifiers"
+  },
+  {
+    "id": "release-request",
+    "claim": "The download page asks the GitHub API for the latest release and falls back to the Releases page when none is available.",
+    "where": "privacy page and download status",
+    "test": "npm test -- --grep @claim:release-request",
+    "sandbox": "fresh landing contexts record the exact GitHub API request, then return an empty response and assert the calm release-page fallback with no console error"
+  },
+  {
+    "id": "mit-license",
+    "claim": "The free core source code is provided under the MIT License.",
+    "where": "terms page and README",
+    "test": "npm run test:unit -- --testNamePattern @claim:mit-license",
+    "sandbox": "read the shipped LICENSE and assert the MIT grant, copyright notice, and warranty disclaimer"
   },
   {
     "id": "checkout-live",

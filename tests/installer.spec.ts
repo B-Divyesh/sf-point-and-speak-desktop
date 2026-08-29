@@ -17,7 +17,7 @@ function install(api: string, bin: string) {
   });
 }
 
-test("@claim:checksum-installers Linux installer verifies SHA256 before installing", async ({}, testInfo) => {
+test("@claim:linux-checksum-installer Linux installer verifies SHA256 before installing", async ({}, testInfo) => {
   test.skip(testInfo.project.name !== "chromium", "one host-level installer check is sufficient");
   const artifact = Buffer.from("#!/bin/sh\necho Point and Speak fixture\n");
   const goodHash = createHash("sha256").update(artifact).digest("hex");

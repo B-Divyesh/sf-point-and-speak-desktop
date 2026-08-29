@@ -59,6 +59,12 @@ measurement labels disappear, while the live result, three facts, and keyboard
 instructions remain. The demo keeps speech, copy, and pin controls in a
 two-column grid. Desktop spreads the drawing across an asymmetric 5/7 grid.
 
+The landing walkthrough uses three hand-authored blueprint frames rather than
+generic feature cards. The frames preserve the exact task sequence: draw a
+region, review editable text, then speak, copy, or pin it. On phones they stack
+as a single drafting strip. The direct demo puts the completed result before
+the replay surface so its useful outcome remains inside the first viewport.
+
 ## Asset plan and provenance
 
 `hero-blueprint.webp` and its social crop show a fictional legacy inventory

@@ -34,14 +34,31 @@ test("hidden capture canvas is skipped by keyboard focus", async ({ page }) => {
   expect(focused).toContain("sample");
 });
 
-test("@claim:local-only real app OCR sends no screen data off-device", async ({ page }) => {
+test("@claim:selected-region-speech @claim:local-only @claim:speech-speed @claim:account-free-core selected local recognition supports every free result action", async ({ page }) => {
   const outside: string[] = [];
+  await page.addInitScript(() => {
+    class Speech { text: string; rate = 1; constructor(text: string) { this.text = text; } }
+    Object.defineProperty(window, "SpeechSynthesisUtterance", { value: Speech });
+    Object.defineProperty(window, "speechSynthesis", { value: { cancel() {}, speak(value: { text: string; rate: number }) { (window as typeof window & { spoken?: { text: string; rate: number } }).spoken = { text: value.text, rate: value.rate }; } } });
+    Object.defineProperty(navigator, "clipboard", { value: { writeText(value: string) { (window as typeof window & { copied?: string }).copied = value; return Promise.resolve(); } } });
+  });
   page.on("request", (request) => {
     const url = new URL(request.url());
     if (url.protocol.startsWith("http") && url.origin !== new URL(APP_URL).origin) outside.push(request.url());
   });
   await readSample(page);
+  const recognised = await page.getByLabel("Correct the text before speaking").inputValue();
+  expect(recognised).toContain("Seal kit");
+  expect(recognised).not.toContain("FIELD STOCK");
+  expect(await page.evaluate(() => Object.keys(localStorage).some((key) => key.includes("license") || key.includes("account")))).toBe(false);
+  await page.getByLabel(/Speech speed/).fill("1.5");
+  await page.getByRole("button", { name: "Speak text" }).click();
+  await expect.poll(() => page.evaluate(() => (window as typeof window & { spoken?: { text: string } }).spoken?.text)).toContain("Seal kit");
+  expect(await page.evaluate(() => (window as typeof window & { spoken?: { rate: number } }).spoken?.rate)).toBe(1.5);
+  await page.getByRole("button", { name: "Copy text" }).click();
+  await expect.poll(() => page.evaluate(() => (window as typeof window & { copied?: string }).copied)).toContain("Seal kit");
   await page.getByRole("button", { name: "Pin result" }).click();
+  await expect(page.getByRole("heading", { name: "Pinned result" })).toBeVisible();
   expect(outside).toEqual([]);
 });
 
@@ -54,23 +71,6 @@ test("@claim:capture-memory app capture and result disappear on reload", async (
   await expect(page.locator("#screen")).toBeHidden();
   await expect(page.locator("#result-panel")).toBeHidden();
   await expect(page.locator("#pinned")).toBeHidden();
-});
-
-test("@claim:free-core capture, OCR, speech, copy, and pin work without a license", async ({ page }) => {
-  await page.addInitScript(() => {
-    class Speech { text: string; rate = 1; constructor(text: string) { this.text = text; } }
-    Object.defineProperty(window, "SpeechSynthesisUtterance", { value: Speech });
-    Object.defineProperty(window, "speechSynthesis", { value: { cancel() {}, speak(value: { text: string }) { (window as typeof window & { spoken?: string }).spoken = value.text; } } });
-    Object.defineProperty(navigator, "clipboard", { value: { writeText(value: string) { (window as typeof window & { copied?: string }).copied = value; return Promise.resolve(); } } });
-  });
-  await readSample(page);
-  expect(await page.evaluate(() => Object.keys(localStorage).some((key) => key.includes("license")))).toBe(false);
-  await page.getByRole("button", { name: "Speak text" }).click();
-  await expect.poll(() => page.evaluate(() => (window as typeof window & { spoken?: string }).spoken)).toContain("Seal kit");
-  await page.getByRole("button", { name: "Copy text" }).click();
-  await expect.poll(() => page.evaluate(() => (window as typeof window & { copied?: string }).copied)).toContain("Seal kit");
-  await page.getByRole("button", { name: "Pin result" }).click();
-  await expect(page.getByRole("heading", { name: "Pinned result" })).toBeVisible();
 });
 
 test("desktop app has no serious accessibility violations", async ({ page }) => {
