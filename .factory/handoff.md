@@ -1,94 +1,81 @@
-# Point & Speak Desktop — polish round 1 handoff
+# Point & Speak Desktop — independent verification 3 handoff
 
-## Result
+## Result: FAIL
 
-PASS. Repair commit `d76d620` resolves all 36 findings in
-`.factory/review-1.md`, including the blocking demo and claim-coverage issues.
-The static site was deployed under work order
-`point-and-speak-desktop-polish-1` as Azure deployment
-`b0eec70d-390f-40a3-b3f4-9f2e77f21686`.
+Candidate `3680f2f22c21719c1df309943971fd2052ed2f4e` was independently
+verified on 2026-08-29 UTC against
+`https://point-and-speak-desktop.sociobot.in`. Do not release this candidate
+yet.
 
-Live URL: <https://point-and-speak-desktop.sociobot.in>
+The static deployment matches the candidate and the product works end to end.
+All 18 claim commands, the full test suite, strict lint/type checks, Rust tests,
+production build, checkout, privacy, axe, offline, rate-limit, and performance
+checks pass. The release remains blocked because the downloadable desktop
+artifacts were built from older commit `5446ce0`, not from this candidate.
 
-## What changed
+Full evidence: `.factory/verification-3.md`.
 
-- Added a truly one-click, storage-isolated `?demo=1` sample with a persistent
-  banner, Reset demo, Start for real, completed editable result, and three-frame
-  walkthrough.
-- Rewrote the first screen, all flagged jargon, the pricing section, legal
-  copy, footer build label, and 404 recovery text in plain words.
-- Added exact per-route titles, descriptions, canonicals, social metadata,
-  focus/history behavior, shared 404 structure, and a 180 px touch icon.
-- Registered 18 bounded claims and gave each exactly one tagged observable
-  test. Demo entry cancels real release/license work and never reads or writes
-  real storage.
-- Repaired small-screen type, layout, and 44 px controls while preserving the
-  black, paper, orange, and cyan technical-blueprint visual system.
-- Updated README, demo/design/copy audits, catalog description, and MIT license
-  evidence. `.factory/polish-1.md` maps every finding to its proof.
+## Defects by severity
 
-Catalog description: “Read text from a selected desktop region aloud, then
-edit, copy, or pin it.” (verb-first, 75 characters).
+### P1 — Candidate desktop binaries were not published
 
-## Exact verification
+GitHub release `v0.1.2` and workflow run `33180357456` use
+`5446ce035d5ff013662c961ccec4284df9451fac`. Candidate `3680f2f` changes
+`app/extra.css`, `app/index.html`, `src-tauri/Cargo.toml`,
+`src-tauri/src/lib.rs`, and `src-tauri/tauri.conf.json` after that tag. The
+downloaded DEB confirms the older package wording. All live download buttons
+therefore lead to a valid but non-candidate desktop build.
 
-From the final working tree:
+### P2 — One mobile navigation target is too narrow
 
-```text
-npm ci                                      PASS; 0 vulnerabilities
-npm test                                    PASS; 10 Vitest, 87 Playwright, 1 intentional duplicate skip
-npm run lint                                PASS; TypeScript and Clippy -D warnings
-npm run build                               PASS; dist/app and dist/site
-npm run build:site                          PASS; dist/site
-npm audit --omit=dev                        PASS; 0 vulnerabilities
-cargo fmt --manifest-path src-tauri/Cargo.toml --check  PASS
-cargo test --manifest-path src-tauri/Cargo.toml         PASS; 1 native test
-```
+At 390 px, the standalone footer `Terms` link measures `38.3 × 44` CSS pixels.
+The contract requires at least `44 × 44`. Existing tests assert target height
+only and miss the width.
 
-Every command in `.factory/claims.json` was then run separately from clean
-clone `/tmp/point-speak-claims-vBo62H/repo`. All 18 passed. The live checkout
-test returned USD 19 and HTTP 303 to the hosted Dodo checkout. See
-`.factory/evidence/claim-tests-clean-clone.log`.
+No P0 or P3 defect was found.
 
-Production evidence after deployment:
+## Verification summary
 
 ```text
-verify-url.sh                                PASS; HTTP 200, title/lang/h1/main/alt, zero console errors
-axe CLI on /, /demo, /privacy, /terms        PASS; 0 violations on all four pages
-cold mobile/desktop browser checks           PASS; correct titles/h1/main, no overflow or console errors
-HTTP / /demo /privacy /terms                 200
-HTTP /definitely-missing-polish-1            404 with designed shared skeleton
-Lighthouse mobile                            95 performance, 100 accessibility, 100 best practices, 100 SEO
-Lighthouse web vitals                        LCP 1.2 s, CLS 0; 50 KiB transfer
+.factory/claims.json                     PASS; 18/18 exact commands
+npm test                                 PASS; 10 Vitest, 87 Playwright, 1 intentional skip
+npm run typecheck                        PASS
+npm run lint                             PASS; Clippy uses -D warnings
+cargo fmt --manifest-path src-tauri/Cargo.toml -- --check  PASS
+cargo test --manifest-path src-tauri/Cargo.toml            PASS
+npm run build                            PASS; dist/app and dist/site
+npm audit --omit=dev --audit-level=high PASS; 0 vulnerabilities
+verify-url.sh                            PASS; HTTP/title/lang/h1/main/alt/console
+axe live                                 PASS; 0 serious/critical across all routes, themes, and viewports
+Lighthouse mobile                       95 performance, 100 a11y, 100 best practices, 100 SEO
 ```
 
-The site bundles 6.57 KiB gzip JavaScript and 4.08 KiB gzip CSS. The desktop UI
-bundle is 12.72 KiB gzip JavaScript and 1.51 KiB gzip CSS. These are below the
-specified budgets.
+The cold candidate sample OCR completed in 1,379 ms. A 20-region synthetic
+pilot using the shipped recognition files produced 20/20 usable results; the
+maximum warm recognition time was 198 ms. Demo state stayed isolated, all OCR
+traffic stayed local, service-worker update/offline reload passed, and a
+50-request license-verification burst produced 30 HTTP 200 plus 20 HTTP 429;
+every 429 had `Retry-After: 4`.
 
-Release `v0.1.2` remains available with macOS Arm/Intel DMGs, Windows setup,
-Linux AppImage/DEB, `SHA256SUMS`, and `latest.json`. A fresh download of
-`Point.Speak.Desktop_0.1.2_x64-setup.exe` matched SHA-256
-`64ef78933131028f7c148e965d78ff8cf073f152a2e62205a3b67f4eca217cee`.
+The website build matches production exactly for HTML, JS, CSS, and service
+worker SHA-256. The existing DEB checksum also matches its published checksum,
+and the hosted Linux installer succeeds. The blocker is specifically that
+those desktop artifacts predate the candidate.
 
-## Run and verify
+## Required next steps
 
-```bash
-npm ci
-npm test
-npm run lint
-npm run build
-cargo test --manifest-path src-tauri/Cargo.toml
-```
+1. Give the candidate desktop build a new version and tag.
+2. Run `.github/workflows/release.yml` for that tag and confirm all four build
+   jobs plus checksums succeed from the candidate source state.
+3. Download one new artifact, match it to `SHA256SUMS`, and verify its package
+   metadata/build provenance points to the candidate.
+4. Expand the footer `Terms` hit area to at least 44 by 44 CSS pixels and add a
+   regression assertion for both target width and height.
+5. Repeat claims, app smoke tests, live download resolution, and static
+   deployment identity checks before changing the verdict to PASS.
 
-Direct demo: <https://point-and-speak-desktop.sociobot.in/?demo=1>
+## Needs operator action
 
-## Remaining work
-
-No review finding or product defect is known to remain.
-
-### Needs operator action
-
-The current installers are unsigned. Add `APPLE_CERTIFICATE` and
-`WINDOWS_CERT_PFX` repository secrets when the owner has signing certificates;
-the release workflow already provides the platform build boundary.
+macOS notarization and Windows Authenticode still require the owner's
+`APPLE_CERTIFICATE` and `WINDOWS_CERT_PFX` secrets. Unsigned status is not the
+reason for this FAIL.
