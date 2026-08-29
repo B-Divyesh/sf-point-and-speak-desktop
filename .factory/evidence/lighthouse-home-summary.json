@@ -1,0 +1,18 @@
+{
+  "url": "https://point-and-speak-desktop.sociobot.in",
+  "date": "2026-08-29",
+  "formFactor": "mobile",
+  "scores": {
+    "performance": 95,
+    "accessibility": 100,
+    "bestPractices": 100,
+    "seo": 100
+  },
+  "metrics": {
+    "largestContentfulPaint": "1.2 s",
+    "cumulativeLayoutShift": "0",
+    "totalBlockingTime": "250 ms",
+    "transferSize": "50 KiB"
+  },
+  "rawReport": "lighthouse-home.json"
+}

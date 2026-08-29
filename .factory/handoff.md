@@ -1,42 +1,94 @@
-# Point & Speak Desktop — adversarial review 1 handoff
+# Point & Speak Desktop — polish round 1 handoff
 
 ## Result
 
-Review 1 is complete with verdict **FAIL**. The detailed report is
-[`review-1.md`](review-1.md). No product code was changed.
+PASS. Repair commit `d76d620` resolves all 36 findings in
+`.factory/review-1.md`, including the blocking demo and claim-coverage issues.
+The static site was deployed under work order
+`point-and-speak-desktop-polish-1` as Azure deployment
+`b0eec70d-390f-40a3-b3f4-9f2e77f21686`.
 
-The landing page passes the cold first-read check at 390 px and desktop. The
-live demo, Reset, sandbox isolation, offline reload, routing, Back focus,
-accessibility scan, links, checkout, and build all operate. The report records
-36 remaining contract findings, including four blocking demo/claims issues.
+Live URL: <https://point-and-speak-desktop.sociobot.in>
 
-## Verification performed
+## What changed
 
-- Fresh live Chromium contexts at 390 × 844 and 1440 × 900.
-- Direct live demo flow, pin/remove/reset, seeded real-storage preservation,
-  request log, service-worker install, and offline reload.
-- Live metadata/landmark/overflow/console inspection on `/`, `/demo`,
-  `/privacy`, `/terms`, and a real HTTP 404.
-- Live WCAG A/AA axe scan on those routes and a full link crawl.
-- `/opt/fleet/lib/verify-url.sh` against the production URL.
-- Every command in `.factory/claims.json`, separately, from clean local clone
-  `/tmp/point-speak-review-01slW5/repo`.
-- Full `npm test`, typecheck, strict lint, Rust format/test, production build,
-  checkout test, and production dependency audit from that clone.
+- Added a truly one-click, storage-isolated `?demo=1` sample with a persistent
+  banner, Reset demo, Start for real, completed editable result, and three-frame
+  walkthrough.
+- Rewrote the first screen, all flagged jargon, the pricing section, legal
+  copy, footer build label, and 404 recovery text in plain words.
+- Added exact per-route titles, descriptions, canonicals, social metadata,
+  focus/history behavior, shared 404 structure, and a 180 px touch icon.
+- Registered 18 bounded claims and gave each exactly one tagged observable
+  test. Demo entry cancels real release/license work and never reads or writes
+  real storage.
+- Repaired small-screen type, layout, and 44 px controls while preserving the
+  black, paper, orange, and cyan technical-blueprint visual system.
+- Updated README, demo/design/copy audits, catalog description, and MIT license
+  evidence. `.factory/polish-1.md` maps every finding to its proof.
 
-Observed aggregate results: 7 Vitest checks passed; 69 Playwright checks passed
-with one intentional duplicate skipped; Rust tests passed; checkout reported
-USD 19.00 and HTTP 303 to hosted Dodo; `dist/app` and `dist/site` were produced;
-production audit reported zero vulnerabilities.
+Catalog description: “Read text from a selected desktop region aloud, then
+edit, copy, or pin it.” (verb-first, 75 characters).
 
-The base container lacked the documented GLib/WebKit packages, so the native
-claim initially stopped at dependency discovery. Installing the exact Linux
-packages from `.github/workflows/release.yml` allowed the exact command to
-compile and pass. This was not recorded as a product test failure.
+## Exact verification
+
+From the final working tree:
+
+```text
+npm ci                                      PASS; 0 vulnerabilities
+npm test                                    PASS; 10 Vitest, 87 Playwright, 1 intentional duplicate skip
+npm run lint                                PASS; TypeScript and Clippy -D warnings
+npm run build                               PASS; dist/app and dist/site
+npm run build:site                          PASS; dist/site
+npm audit --omit=dev                        PASS; 0 vulnerabilities
+cargo fmt --manifest-path src-tauri/Cargo.toml --check  PASS
+cargo test --manifest-path src-tauri/Cargo.toml         PASS; 1 native test
+```
+
+Every command in `.factory/claims.json` was then run separately from clean
+clone `/tmp/point-speak-claims-vBo62H/repo`. All 18 passed. The live checkout
+test returned USD 19 and HTTP 303 to the hosted Dodo checkout. See
+`.factory/evidence/claim-tests-clean-clone.log`.
+
+Production evidence after deployment:
+
+```text
+verify-url.sh                                PASS; HTTP 200, title/lang/h1/main/alt, zero console errors
+axe CLI on /, /demo, /privacy, /terms        PASS; 0 violations on all four pages
+cold mobile/desktop browser checks           PASS; correct titles/h1/main, no overflow or console errors
+HTTP / /demo /privacy /terms                 200
+HTTP /definitely-missing-polish-1            404 with designed shared skeleton
+Lighthouse mobile                            95 performance, 100 accessibility, 100 best practices, 100 SEO
+Lighthouse web vitals                        LCP 1.2 s, CLS 0; 50 KiB transfer
+```
+
+The site bundles 6.57 KiB gzip JavaScript and 4.08 KiB gzip CSS. The desktop UI
+bundle is 12.72 KiB gzip JavaScript and 1.51 KiB gzip CSS. These are below the
+specified budgets.
+
+Release `v0.1.2` remains available with macOS Arm/Intel DMGs, Windows setup,
+Linux AppImage/DEB, `SHA256SUMS`, and `latest.json`. A fresh download of
+`Point.Speak.Desktop_0.1.2_x64-setup.exe` matched SHA-256
+`64ef78933131028f7c148e965d78ff8cf073f152a2e62205a3b67f4eca217cee`.
+
+## Run and verify
+
+```bash
+npm ci
+npm test
+npm run lint
+npm run build
+cargo test --manifest-path src-tauri/Cargo.toml
+```
+
+Direct demo: <https://point-and-speak-desktop.sociobot.in/?demo=1>
 
 ## Remaining work
 
-Address F-1-1 through F-1-36 in `.factory/review-1.md`, then repeat the entire
-review. Highest priority: reveal the useful OCR result on the first demo click,
-test or narrow the core “any screen region” promise, and make the shortcut and
-plural installer claim tests prove their complete wording.
+No review finding or product defect is known to remain.
+
+### Needs operator action
+
+The current installers are unsigned. Add `APPLE_CERTIFICATE` and
+`WINDOWS_CERT_PFX` repository secrets when the owner has signing certificates;
+the release workflow already provides the platform build boundary.

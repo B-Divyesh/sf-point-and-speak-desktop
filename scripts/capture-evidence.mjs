@@ -12,7 +12,15 @@ async function capture(name, path, viewport, expectedTitle, expectedHeading) {
   const context = await browser.newContext({ viewport, serviceWorkers: "block" });
   const page = await context.newPage();
   const consoleErrors = [];
-  page.on("console", (message) => { if (message.type() === "error") consoleErrors.push(message.text()); });
+  page.on("console", (message) => {
+    const text = message.text();
+    // Chromium reports the expected top-level HTTP status as a console error
+    // when loading the deliberate 404 evidence route. Resource errors remain
+    // failures on every other route.
+    const expectedNotFoundNavigation = name === "404-desktop"
+      && text.includes("server responded with a status of 404");
+    if (message.type() === "error" && !expectedNotFoundNavigation) consoleErrors.push(text);
+  });
   const response = await page.goto(`${baseURL}${path}`, { waitUntil: "networkidle" });
   const title = await page.title();
   const headings = await page.locator("main h1").allTextContents();

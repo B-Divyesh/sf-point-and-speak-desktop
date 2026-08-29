@@ -1,0 +1,5 @@
+2026-08-29 production axe CLI 4.13.0
+https://point-and-speak-desktop.sociobot.in — 0 violations
+https://point-and-speak-desktop.sociobot.in/demo — 0 violations
+https://point-and-speak-desktop.sociobot.in/privacy — 0 violations
+https://point-and-speak-desktop.sociobot.in/terms — 0 violations
