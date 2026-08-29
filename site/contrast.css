@@ -9,6 +9,11 @@ main:empty + .site-footer { display: none; }
   min-height: 44px;
 }
 
+.site-footer nav a {
+  justify-content: center;
+  min-width: 44px;
+}
+
 .demo-result input[type="range"] { height: 44px; min-height: 44px; }
 .facts,
 .first-actions span,

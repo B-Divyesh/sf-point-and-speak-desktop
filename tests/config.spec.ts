@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import { execFileSync, spawnSync } from "node:child_process";
 import { readFileSync } from "node:fs";
 
 describe("product metadata", () => {
@@ -38,7 +39,7 @@ describe("product metadata", () => {
     const page = readFileSync("public/404.html", "utf8");
     expect(page).toContain("<h1>Page not found</h1>");
     expect(page).toContain('href="/"');
-    for (const required of ['name="description"', 'rel="canonical"', 'property="og:title"', 'name="twitter:title"', 'rel="apple-touch-icon"', "Main navigation", "Footer navigation", "Built by Param Factory", "Version 0.1.2 · build 2026-08-28"]) {
+    for (const required of ['name="description"', 'rel="canonical"', 'property="og:title"', 'name="twitter:title"', 'rel="apple-touch-icon"', "Main navigation", "Footer navigation", "Built by Param Factory", "Version 0.1.3 · build 2026-08-29"]) {
       expect(page).toContain(required);
     }
   });
@@ -84,5 +85,37 @@ describe("product metadata", () => {
     const installer = readFileSync("public/install.ps1", "utf8");
     expect(installer).toContain("Get-FileHash $msi -Algorithm SHA256");
     expect(installer).toContain("Checksum did not match. Nothing was installed.");
+  });
+
+  it("binds each release to its tag, version, source commit, checksums, and provenance", () => {
+    const workflow = readFileSync(".github/workflows/release.yml", "utf8");
+    const validator = readFileSync("scripts/verify-release-source.mjs", "utf8");
+    const manifest = readFileSync("scripts/release-manifest.py", "utf8");
+    const provenance = readFileSync("scripts/release-provenance.py", "utf8");
+    expect(workflow).toContain("node scripts/verify-release-source.mjs");
+    expect(workflow).toContain('python3 ../scripts/release-manifest.py "${GITHUB_REF_NAME}" . "${GITHUB_SHA}"');
+    expect(workflow).toContain('python3 ../scripts/release-provenance.py "${GITHUB_REF_NAME}" . "${GITHUB_SHA}"');
+    expect(workflow).toContain("sha256sum");
+    expect(workflow).toContain("release-assets/PROVENANCE.json");
+    expect(validator).toContain("GITHUB_SHA");
+    expect(manifest).toContain('"source_commit"');
+    expect(provenance).toContain('"sha256"');
+  });
+
+  it("rejects a release build whose workflow SHA differs from its checkout", () => {
+    const checkoutSha = execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim();
+    const baseEnv = { ...process.env, GITHUB_REF_TYPE: "tag", GITHUB_REF_NAME: "v0.1.3" };
+    const matching = spawnSync(process.execPath, ["scripts/verify-release-source.mjs"], {
+      encoding: "utf8",
+      env: { ...baseEnv, GITHUB_SHA: checkoutSha },
+    });
+    expect(matching.status, matching.stderr).toBe(0);
+
+    const stale = spawnSync(process.execPath, ["scripts/verify-release-source.mjs"], {
+      encoding: "utf8",
+      env: { ...baseEnv, GITHUB_SHA: "0".repeat(40) },
+    });
+    expect(stale.status).not.toBe(0);
+    expect(stale.stderr).toContain(`checkout ${checkoutSha} does not match workflow source`);
   });
 });

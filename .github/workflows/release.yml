@@ -29,10 +29,14 @@ jobs:
     runs-on: ${{ matrix.platform }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
+      - name: Verify tag, versions, and source commit
+        run: node scripts/verify-release-source.mjs
       - uses: dtolnay/rust-toolchain@stable
         with:
           targets: ${{ matrix.rust-target }}
@@ -50,7 +54,9 @@ jobs:
         with:
           tagName: ${{ github.ref_name }}
           releaseName: Point & Speak Desktop ${{ github.ref_name }}
-          releaseBody: Unsigned pilot installers. Screen capture and OCR run on the device.
+          releaseBody: |
+            Unsigned pilot installers. Screen capture and OCR run on the device.
+            Source commit: `${{ github.sha }}`
           releaseDraft: false
           prerelease: false
           args: ${{ matrix.args }}
@@ -67,12 +73,14 @@ jobs:
       - name: Create release metadata
         run: |
           cd release-assets
-          sha256sum * > SHA256SUMS
-          python3 ../scripts/release-manifest.py "${GITHUB_REF_NAME}" . > latest.json
+          python3 ../scripts/release-manifest.py "${GITHUB_REF_NAME}" . "${GITHUB_SHA}" > latest.json
+          python3 ../scripts/release-provenance.py "${GITHUB_REF_NAME}" . "${GITHUB_SHA}" > PROVENANCE.json
+          find . -maxdepth 1 -type f ! -name SHA256SUMS -printf '%f\n' | sort | xargs sha256sum > SHA256SUMS
       - name: Attach checksums and manifest
         uses: softprops/action-gh-release@v2
         with:
           files: |
             release-assets/SHA256SUMS
             release-assets/latest.json
+            release-assets/PROVENANCE.json
           tag_name: ${{ github.ref_name }}

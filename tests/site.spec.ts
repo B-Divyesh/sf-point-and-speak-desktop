@@ -3,13 +3,13 @@ import AxeBuilder from "@axe-core/playwright";
 
 const RELEASE_API = "https://api.github.com/repos/B-Divyesh/sf-point-and-speak-desktop/releases?per_page=1";
 const sampleRelease = [{
-  tag_name: "v0.1.2",
-  html_url: "https://github.com/B-Divyesh/sf-point-and-speak-desktop/releases/tag/v0.1.2",
+  tag_name: "v0.1.3",
+  html_url: "https://github.com/B-Divyesh/sf-point-and-speak-desktop/releases/tag/v0.1.3",
   assets: [
-    { name: "Point.Speak.Desktop_0.1.2_aarch64.dmg", browser_download_url: "https://example.test/arm.dmg" },
-    { name: "Point.Speak.Desktop_0.1.2_x64.dmg", browser_download_url: "https://example.test/intel.dmg" },
-    { name: "Point.Speak.Desktop_0.1.2_amd64.AppImage", browser_download_url: "https://example.test/app.AppImage" },
-    { name: "Point.Speak.Desktop_0.1.2_x64-setup.exe", browser_download_url: "https://example.test/setup.exe" },
+    { name: "Point.Speak.Desktop_0.1.3_aarch64.dmg", browser_download_url: "https://example.test/arm.dmg" },
+    { name: "Point.Speak.Desktop_0.1.3_x64.dmg", browser_download_url: "https://example.test/intel.dmg" },
+    { name: "Point.Speak.Desktop_0.1.3_amd64.AppImage", browser_download_url: "https://example.test/app.AppImage" },
+    { name: "Point.Speak.Desktop_0.1.3_x64-setup.exe", browser_download_url: "https://example.test/setup.exe" },
   ],
 }];
 
@@ -270,8 +270,23 @@ test("mobile home and demo fit 390 pixels with primary content in view", async (
   await page.getByRole("link", { name: "Try it with sample data" }).click();
   expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBe(390);
   await expect(page.getByRole("button", { name: "Speak text" })).toBeInViewport();
-  const targets = await page.locator(".site-header a:visible, .site-footer a:visible, .demo-banner a:visible, .demo-banner button:visible, input[type=range]:visible").evaluateAll((nodes) => nodes.map((node) => node.getBoundingClientRect().height));
-  expect(targets.every((height) => height >= 44)).toBe(true);
+  const targets = await page.locator(".site-header a:visible, .site-footer a:visible, .demo-banner a:visible, .demo-banner button:visible, input[type=range]:visible").evaluateAll((nodes) => nodes.map((node) => {
+    const { width, height } = node.getBoundingClientRect();
+    return { name: node.textContent?.trim() || node.getAttribute("aria-label"), width, height };
+  }));
+  for (const target of targets) {
+    expect(target.width, `${target.name} target width`).toBeGreaterThanOrEqual(44);
+    expect(target.height, `${target.name} target height`).toBeGreaterThanOrEqual(44);
+  }
+});
+
+test("mobile footer Terms target is at least 44 by 44 CSS pixels", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/");
+  const terms = page.getByRole("navigation", { name: "Footer navigation" }).getByRole("link", { name: "Terms" });
+  const box = await terms.boundingBox();
+  expect(box?.width).toBeGreaterThanOrEqual(44);
+  expect(box?.height).toBeGreaterThanOrEqual(44);
 });
 
 test("keyboard history navigation restores heading focus", async ({ page }) => {
@@ -293,6 +308,6 @@ test("service worker installs the current cache and accepts update checks", asyn
     await registration.update();
     return caches.keys();
   });
-  expect(cachesAfterUpdate).toContain("point-speak-v3");
-  expect(cachesAfterUpdate).not.toContain("point-speak-v2");
+  expect(cachesAfterUpdate).toContain("point-speak-v4");
+  expect(cachesAfterUpdate).not.toContain("point-speak-v3");
 });
