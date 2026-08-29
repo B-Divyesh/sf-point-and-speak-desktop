@@ -2,6 +2,7 @@ import { mkdirSync, writeFileSync } from "node:fs";
 import { chromium } from "@playwright/test";
 
 const baseURL = process.env.EVIDENCE_BASE_URL || "http://127.0.0.1:4173";
+const evidencePrefix = process.env.EVIDENCE_PREFIX || "polish-2";
 const output = ".factory/evidence";
 mkdirSync(output, { recursive: true });
 
@@ -26,7 +27,7 @@ async function capture(name, path, viewport, expectedTitle, expectedHeading) {
   const headings = await page.locator("main h1").allTextContents();
   const mainCount = await page.locator("main").count();
   const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
-  await page.screenshot({ path: `${output}/polish-1-${name}.png`, fullPage: true });
+  await page.screenshot({ path: `${output}/${evidencePrefix}-${name}.png`, fullPage: true });
   checks.push({ name, url: page.url(), status: response?.status(), title, headings, mainCount, overflow, consoleErrors, pass: title === expectedTitle && headings.length === 1 && headings[0] === expectedHeading && mainCount === 1 && overflow === 0 && consoleErrors.length === 0 });
   await context.close();
 }
@@ -37,7 +38,7 @@ await capture("privacy-desktop", "/privacy", { width: 1440, height: 900 }, "Priv
 await capture("404-desktop", "/definitely-missing-polish-1", { width: 1440, height: 900 }, "Page not found — Point & Speak Desktop", "Page not found");
 
 await browser.close();
-writeFileSync(`${output}/polish-1-live-check.json`, `${JSON.stringify({ baseURL, checkedAt: new Date().toISOString(), checks }, null, 2)}\n`);
+writeFileSync(`${output}/${evidencePrefix}-live-check.json`, `${JSON.stringify({ baseURL, checkedAt: new Date().toISOString(), checks }, null, 2)}\n`);
 if (checks.some((check) => !check.pass)) {
   console.error(JSON.stringify(checks, null, 2));
   process.exit(1);

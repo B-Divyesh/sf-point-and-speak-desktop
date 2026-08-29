@@ -1,1 +1,1 @@
-Read text from a selected desktop region aloud, then edit, copy, or pin it.
+Read selected desktop text aloud, then edit, copy, or pin it.

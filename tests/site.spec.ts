@@ -3,13 +3,13 @@ import AxeBuilder from "@axe-core/playwright";
 
 const RELEASE_API = "https://api.github.com/repos/B-Divyesh/sf-point-and-speak-desktop/releases?per_page=1";
 const sampleRelease = [{
-  tag_name: "v0.1.3",
-  html_url: "https://github.com/B-Divyesh/sf-point-and-speak-desktop/releases/tag/v0.1.3",
+  tag_name: "v0.1.4",
+  html_url: "https://github.com/B-Divyesh/sf-point-and-speak-desktop/releases/tag/v0.1.4",
   assets: [
-    { name: "Point.Speak.Desktop_0.1.3_aarch64.dmg", browser_download_url: "https://example.test/arm.dmg" },
-    { name: "Point.Speak.Desktop_0.1.3_x64.dmg", browser_download_url: "https://example.test/intel.dmg" },
-    { name: "Point.Speak.Desktop_0.1.3_amd64.AppImage", browser_download_url: "https://example.test/app.AppImage" },
-    { name: "Point.Speak.Desktop_0.1.3_x64-setup.exe", browser_download_url: "https://example.test/setup.exe" },
+    { name: "Point.Speak.Desktop_0.1.4_aarch64.dmg", browser_download_url: "https://example.test/arm.dmg" },
+    { name: "Point.Speak.Desktop_0.1.4_x64.dmg", browser_download_url: "https://example.test/intel.dmg" },
+    { name: "Point.Speak.Desktop_0.1.4_amd64.AppImage", browser_download_url: "https://example.test/app.AppImage" },
+    { name: "Point.Speak.Desktop_0.1.4_x64-setup.exe", browser_download_url: "https://example.test/setup.exe" },
   ],
 }];
 
@@ -308,6 +308,6 @@ test("service worker installs the current cache and accepts update checks", asyn
     await registration.update();
     return caches.keys();
   });
-  expect(cachesAfterUpdate).toContain("point-speak-v4");
+  expect(cachesAfterUpdate).toContain("point-speak-v5");
   expect(cachesAfterUpdate).not.toContain("point-speak-v3");
 });

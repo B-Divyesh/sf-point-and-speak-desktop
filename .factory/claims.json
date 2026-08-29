@@ -49,6 +49,13 @@
     "sandbox": "fresh desktop webview; run bundled recognition, pin the result, assert no stored capture state, reload, and assert the capture and result are gone"
   },
   {
+    "id": "capture-on-demand",
+    "claim": "Screen capture starts only after Capture screen, Capture again, or the configured shortcut.",
+    "where": "landing privacy boundary and desktop capture window",
+    "test": "cargo test --manifest-path src-tauri/Cargo.toml claim_capture_only_runs_after_an_explicit_user_action",
+    "sandbox": "native fake capture backend; assert zero calls at startup and after an invalid source, then exactly one call after the Capture screen action and after the configured shortcut action"
+  },
+  {
     "id": "configured-shortcut",
     "claim": "The configured capture shortcut is Ctrl+Shift+Space.",
     "where": "landing workflow and README",

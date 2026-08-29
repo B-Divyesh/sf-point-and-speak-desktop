@@ -1,8 +1,8 @@
 # Point & Speak Desktop
 
 Read text from a selected screen region aloud. Point & Speak Desktop is for
-low-vision users when screen readers miss text in remote desktops, old
-software, games, or apps that draw text as images.
+low-vision users when screen readers miss text. It reads text in remote
+desktops, old software, games, and apps that draw text as images.
 
 The configured shortcut is `Ctrl+Shift+Space`. Draw a region, review the
 recognised text, then speak, copy, or pin it. English text-recognition files

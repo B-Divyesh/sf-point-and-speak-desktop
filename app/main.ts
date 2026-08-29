@@ -37,11 +37,11 @@ function showScreen(dataUrl: string, message: string) {
   screenshot.src = dataUrl;
 }
 
-async function captureScreen() {
+async function captureScreen(source: "button" | "shortcut" | "again") {
   setStatus("Capturing your screen…");
   panel.hidden = true;
   try {
-    const dataUrl = await invoke<string>("capture_desktop");
+    const dataUrl = await invoke<string>("capture_desktop", { source });
     showScreen(dataUrl, "Drag a rectangle around the text. Press Escape to cancel.");
   } catch (error) {
     setStatus(`The screen could not be captured. Allow screen recording in system settings, then try again. ${String(error)}`);
@@ -146,9 +146,9 @@ canvas.addEventListener("keydown", (event) => {
   if (event.key === "Enter") { start = { x: canvas.width * .2, y: canvas.height * .3 }; end = { x: canvas.width * .8, y: canvas.height * .7 }; draw(); void recogniseSelection(); }
 });
 
-document.querySelector("#capture")!.addEventListener("click", captureScreen);
+document.querySelector("#capture")!.addEventListener("click", () => void captureScreen("button"));
 document.querySelector("#sample")!.addEventListener("click", loadSample);
-document.querySelector("#again")!.addEventListener("click", captureScreen);
+document.querySelector("#again")!.addEventListener("click", () => void captureScreen("again"));
 document.querySelector("#speak")!.addEventListener("click", () => {
   speechSynthesis.cancel();
   if (!result.value.trim()) { setStatus("There is no text to speak. Capture a region first."); return; }
@@ -168,4 +168,4 @@ document.querySelector("#unpin")!.addEventListener("click", () => { pinned.hidde
 speed.addEventListener("input", () => { speedValue.value = `${Number(speed.value).toFixed(1).replace(".0", "")}×`; });
 document.querySelector("#close-app")!.addEventListener("click", () => getCurrentWindow().hide());
 window.addEventListener("keydown", (event) => { if (event.key === "Escape") void getCurrentWindow().hide(); });
-if ("__TAURI_INTERNALS__" in window) void listen("start-capture", captureScreen);
+if ("__TAURI_INTERNALS__" in window) void listen("start-capture", () => void captureScreen("shortcut"));

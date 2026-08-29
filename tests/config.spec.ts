@@ -39,7 +39,7 @@ describe("product metadata", () => {
     const page = readFileSync("public/404.html", "utf8");
     expect(page).toContain("<h1>Page not found</h1>");
     expect(page).toContain('href="/"');
-    for (const required of ['name="description"', 'rel="canonical"', 'property="og:title"', 'name="twitter:title"', 'rel="apple-touch-icon"', "Main navigation", "Footer navigation", "Built by Param Factory", "Version 0.1.3 · build 2026-08-29"]) {
+    for (const required of ['name="description"', 'rel="canonical"', 'property="og:title"', 'name="twitter:title"', 'rel="apple-touch-icon"', "Main navigation", "Footer navigation", "Built by Param Factory", "Version 0.1.4 · build 2026-08-29"]) {
       expect(page).toContain(required);
     }
   });
@@ -104,7 +104,7 @@ describe("product metadata", () => {
 
   it("rejects a release build whose workflow SHA differs from its checkout", () => {
     const checkoutSha = execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim();
-    const baseEnv = { ...process.env, GITHUB_REF_TYPE: "tag", GITHUB_REF_NAME: "v0.1.3" };
+    const baseEnv = { ...process.env, GITHUB_REF_TYPE: "tag", GITHUB_REF_NAME: "v0.1.4" };
     const matching = spawnSync(process.execPath, ["scripts/verify-release-source.mjs"], {
       encoding: "utf8",
       env: { ...baseEnv, GITHUB_SHA: checkoutSha },
