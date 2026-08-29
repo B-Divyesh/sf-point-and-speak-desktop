@@ -1,0 +1,215 @@
+{
+  "checkedAt": "2026-08-29T06:36:20.079Z",
+  "results": [
+    {
+      "viewport": "desktop",
+      "colorScheme": "light",
+      "path": "/",
+      "status": 200,
+      "h1": 1,
+      "overflow": 0,
+      "severe": [],
+      "errors": []
+    },
+    {
+      "viewport": "desktop",
+      "colorScheme": "light",
+      "path": "/?demo=1",
+      "status": 200,
+      "h1": 1,
+      "overflow": 0,
+      "severe": [],
+      "errors": []
+    },
+    {
+      "viewport": "desktop",
+      "colorScheme": "light",
+      "path": "/demo",
+      "status": 200,
+      "h1": 1,
+      "overflow": 0,
+      "severe": [],
+      "errors": []
+    },
+    {
+      "viewport": "desktop",
+      "colorScheme": "light",
+      "path": "/privacy",
+      "status": 200,
+      "h1": 1,
+      "overflow": 0,
+      "severe": [],
+      "errors": []
+    },
+    {
+      "viewport": "desktop",
+      "colorScheme": "light",
+      "path": "/terms",
+      "status": 200,
+      "h1": 1,
+      "overflow": 0,
+      "severe": [],
+      "errors": []
+    },
+    {
+      "viewport": "desktop",
+      "colorScheme": "dark",
+      "path": "/",
+      "status": 200,
+      "h1": 1,
+      "overflow": 0,
+      "severe": [],
+      "errors": []
+    },
+    {
+      "viewport": "desktop",
+      "colorScheme": "dark",
+      "path": "/?demo=1",
+      "status": 200,
+      "h1": 1,
+      "overflow": 0,
+      "severe": [],
+      "errors": []
+    },
+    {
+      "viewport": "desktop",
+      "colorScheme": "dark",
+      "path": "/demo",
+      "status": 200,
+      "h1": 1,
+      "overflow": 0,
+      "severe": [],
+      "errors": []
+    },
+    {
+      "viewport": "desktop",
+      "colorScheme": "dark",
+      "path": "/privacy",
+      "status": 200,
+      "h1": 1,
+      "overflow": 0,
+      "severe": [],
+      "errors": []
+    },
+    {
+      "viewport": "desktop",
+      "colorScheme": "dark",
+      "path": "/terms",
+      "status": 200,
+      "h1": 1,
+      "overflow": 0,
+      "severe": [],
+      "errors": []
+    },
+    {
+      "viewport": "mobile",
+      "colorScheme": "light",
+      "path": "/",
+      "status": 200,
+      "h1": 1,
+      "overflow": 0,
+      "severe": [],
+      "errors": []
+    },
+    {
+      "viewport": "mobile",
+      "colorScheme": "light",
+      "path": "/?demo=1",
+      "status": 200,
+      "h1": 1,
+      "overflow": 0,
+      "severe": [],
+      "errors": []
+    },
+    {
+      "viewport": "mobile",
+      "colorScheme": "light",
+      "path": "/demo",
+      "status": 200,
+      "h1": 1,
+      "overflow": 0,
+      "severe": [],
+      "errors": []
+    },
+    {
+      "viewport": "mobile",
+      "colorScheme": "light",
+      "path": "/privacy",
+      "status": 200,
+      "h1": 1,
+      "overflow": 0,
+      "severe": [],
+      "errors": []
+    },
+    {
+      "viewport": "mobile",
+      "colorScheme": "light",
+      "path": "/terms",
+      "status": 200,
+      "h1": 1,
+      "overflow": 0,
+      "severe": [],
+      "errors": []
+    },
+    {
+      "viewport": "mobile",
+      "colorScheme": "dark",
+      "path": "/",
+      "status": 200,
+      "h1": 1,
+      "overflow": 0,
+      "severe": [],
+      "errors": []
+    },
+    {
+      "viewport": "mobile",
+      "colorScheme": "dark",
+      "path": "/?demo=1",
+      "status": 200,
+      "h1": 1,
+      "overflow": 0,
+      "severe": [],
+      "errors": []
+    },
+    {
+      "viewport": "mobile",
+      "colorScheme": "dark",
+      "path": "/demo",
+      "status": 200,
+      "h1": 1,
+      "overflow": 0,
+      "severe": [],
+      "errors": []
+    },
+    {
+      "viewport": "mobile",
+      "colorScheme": "dark",
+      "path": "/privacy",
+      "status": 200,
+      "h1": 1,
+      "overflow": 0,
+      "severe": [],
+      "errors": []
+    },
+    {
+      "viewport": "mobile",
+      "colorScheme": "dark",
+      "path": "/terms",
+      "status": 200,
+      "h1": 1,
+      "overflow": 0,
+      "severe": [],
+      "errors": []
+    },
+    {
+      "interaction": {
+        "firstFocus": true,
+        "backFocus": true,
+        "motion": {
+          "scroll": "auto",
+          "animations": 0
+        }
+      }
+    }
+  ]
+}

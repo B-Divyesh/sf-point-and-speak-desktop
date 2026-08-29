@@ -19,10 +19,11 @@ The product remains a Tauri 2 desktop app with a static Azure landing site.
 - Root-cause guard: every release matrix job now rejects a non-tag ref, a tag
   that differs from the package version, inconsistent npm/Cargo/Tauri versions,
   or a checkout whose SHA differs from `GITHUB_SHA`.
-- Publication contract: the `v0.1.3` workflow publishes Linux AppImage and
-  DEB, Windows setup EXE, Intel and Apple Silicon DMGs, `SHA256SUMS`,
-  `latest.json`, and `PROVENANCE.json`. The release body and metadata record
-  the source commit. Provenance records a SHA-256 subject for every installer.
+- Publication evidence: tag `v0.1.3` and GitHub Actions run `33238670297`
+  target exact candidate `b1346c821dd91b05275db4caddf48471eb232bd9`.
+  All four platform builds and the checksum job completed successfully. The
+  release contains Linux AppImage and DEB, Windows setup EXE, Intel and Apple
+  Silicon DMGs, `SHA256SUMS`, `latest.json`, and `PROVENANCE.json`.
 - Regression: `tests/config.spec.ts` proves a deliberately stale workflow SHA
   is rejected and checks the checksum/provenance publication contract.
 
@@ -70,6 +71,34 @@ the correct title and `lang`, one `h1`, a main landmark, complete alt text,
 labelled buttons, and zero console/page errors. Desktop and mobile screenshots,
 the Terms screenshot, verifier JSON, and Lighthouse JSON are in
 `.factory/evidence/repair-2/local/`.
+
+The repaired static site was deployed to Azure Static Web Apps and verified at
+`https://point-and-speak-desktop.sociobot.in`. Live HTML, service worker, JS,
+and CSS match `dist/site` byte-for-byte:
+
+```text
+index.html                    c87f2b93536e341a7b6728656d520d4ecdbc72ea016fbfa54562898760c64d0c
+sw.js                         a0c02fa091427350a4445b9ba07c8911e9ece7d2e5c98b7c63035fb50de8bf6a
+assets/index-B-NvNVXz.css     b22bfa3c53a753e4196e6a7214ab2388be232e2e14f84333dd1dad20ea095422
+assets/index-B6dQAZLL.js      5064cc55e5163728e08963211001d7976a95be39849ac76f93823a5dd481c07f
+```
+
+Live verification also passed 20 axe route/theme/viewport scans, keyboard skip
+and history focus, reduced motion, security headers, route status policy,
+offline demo reload, and service-worker update to `point-speak-v4`. The invalid
+license response remains `valid: false`, `reason: invalid`, and `no-store`;
+the burst limiter returned `429` with `Retry-After`, and CORS allowed only the
+product origin. Evidence is in `.factory/evidence/repair-2/live/`.
+
+The release was downloaded independently. `sha256sum -c SHA256SUMS` passed for
+all five installers plus both metadata files. `latest.json` exposes 2 Linux,
+2 macOS, and 1 Windows URLs. `PROVENANCE.json` contains five installer subjects,
+all matching the published checksums and source candidate. The downloaded DEB
+reports version `0.1.3` and the repaired “Read selected screen text aloud”
+description. The hosted Linux installer verified SHA-256 and installed
+`Point.Speak.Desktop_0.1.3_amd64.AppImage` (86,657,528 bytes) in an isolated
+PATH. A fresh live browser resolved Windows, Linux, macOS Apple Silicon, and
+macOS Intel choices to their real `v0.1.3` assets without a console error.
 
 Fresh mobile Lighthouse against `dist/site`:
 
