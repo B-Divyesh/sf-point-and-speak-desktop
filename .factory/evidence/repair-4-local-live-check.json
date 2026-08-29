@@ -1,0 +1,58 @@
+{
+  "baseURL": "http://127.0.0.1:4173",
+  "checkedAt": "2026-08-29T12:12:09.655Z",
+  "checks": [
+    {
+      "name": "home-mobile",
+      "url": "http://127.0.0.1:4173/",
+      "status": 200,
+      "title": "Point & Speak Desktop — Read screen text aloud",
+      "headings": [
+        "Read selected screen text aloud"
+      ],
+      "mainCount": 1,
+      "overflow": 0,
+      "consoleErrors": [],
+      "pass": true
+    },
+    {
+      "name": "demo-mobile",
+      "url": "http://127.0.0.1:4173/?demo=1",
+      "status": 200,
+      "title": "Demo — Point & Speak Desktop",
+      "headings": [
+        "Sample text is ready"
+      ],
+      "mainCount": 1,
+      "overflow": 0,
+      "consoleErrors": [],
+      "pass": true
+    },
+    {
+      "name": "privacy-desktop",
+      "url": "http://127.0.0.1:4173/privacy",
+      "status": 200,
+      "title": "Privacy — Point & Speak Desktop",
+      "headings": [
+        "Your screen stays on your computer"
+      ],
+      "mainCount": 1,
+      "overflow": 0,
+      "consoleErrors": [],
+      "pass": true
+    },
+    {
+      "name": "404-desktop",
+      "url": "http://127.0.0.1:4173/definitely-missing-polish-1",
+      "status": 200,
+      "title": "Page not found — Point & Speak Desktop",
+      "headings": [
+        "Page not found"
+      ],
+      "mainCount": 1,
+      "overflow": 0,
+      "consoleErrors": [],
+      "pass": true
+    }
+  ]
+}

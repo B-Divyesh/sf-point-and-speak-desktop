@@ -1,0 +1,87 @@
+{
+  "report_commit": "ae5b6823531550ac6b787157712a47eb7db3b27b",
+  "candidate": "e30e9298488fd07d5eb5ee7b062b447bedf66be6",
+  "repair_commits": ["0c77f0f", "d16e381"],
+  "production_url": "https://point-and-speak-desktop.sociobot.in",
+  "checked_at_utc": "2026-08-29",
+  "verdict": "PASS",
+  "reported_finding": {
+    "name": "Read the privacy note",
+    "viewport": "390x844",
+    "before_css_px": { "width": 223.734375, "height": 21 },
+    "after_css_px": { "width": 223.734375, "height": 44 }
+  },
+  "mobile_targets": {
+    "routes": ["/", "/?demo=1", "/demo", "/privacy", "/terms", "/missing-repair-4", "/404.html"],
+    "selectors": ["a:visible", "button:visible", "input:visible", "select:visible"],
+    "minimum_width_css_px": 44,
+    "minimum_height_css_px": 44,
+    "undersized": 0,
+    "standalone_404_terms_css_px": { "width": 44, "height": 44 }
+  },
+  "quality_gates": {
+    "npm_ci": "78 packages; 0 audit findings",
+    "vitest": "12 passed",
+    "playwright": "91 passed; 1 intentional skip",
+    "typecheck": "PASS",
+    "strict_clippy": "PASS",
+    "rustfmt": "PASS",
+    "rust_tests": "2 passed",
+    "production_build": "PASS",
+    "declared_claims": "19/19 passed independently"
+  },
+  "browser": {
+    "desktop_app_viewports": ["1180x820", "390x640"],
+    "site_route_theme_combinations": 12,
+    "axe_serious_or_critical": 0,
+    "console_or_page_errors": 0,
+    "horizontal_overflow_px": 0,
+    "text_resize_200_percent_overflow_px": 0,
+    "reduced_motion_running_animations": 0,
+    "keyboard": "skip link first; Space pins; Enter and history focus covered",
+    "demo_request_origins": ["https://point-and-speak-desktop.sociobot.in"],
+    "demo_storage_keys": [],
+    "service_worker_cache": "point-speak-v6",
+    "offline_reload": "PASS"
+  },
+  "response_policy": {
+    "main_routes_status": 200,
+    "missing_route_status": 404,
+    "html_and_service_worker_cache": "public, must-revalidate, max-age=30",
+    "hashed_asset_cache": "public, max-age=31536000, immutable",
+    "license_invalid_status": 200,
+    "license_cache_control": "no-store",
+    "license_cors_origin": "https://point-and-speak-desktop.sociobot.in"
+  },
+  "performance": {
+    "lighthouse_performance": 100,
+    "lighthouse_accessibility": 100,
+    "lighthouse_best_practices": 100,
+    "lighthouse_seo": 100,
+    "fcp_ms": 826.792,
+    "lcp_ms": 1058.792,
+    "tbt_ms": 25,
+    "cls": 0,
+    "total_transfer_bytes": 51232,
+    "site_js_raw_bytes": 19310,
+    "site_js_gzip_bytes": 6569,
+    "site_css_raw_bytes": 14443,
+    "site_css_gzip_bytes": 4114,
+    "mobile_hero_bytes": 16180
+  },
+  "package": {
+    "release": "v0.1.5",
+    "platform_assets_complete": true,
+    "linux_appimage_bytes": 86649336,
+    "linux_appimage_sha256": "33b1b35d9903aa587e295ec9b37d86a829101dcf84f653d564d628af0fb4a16b",
+    "installer_checksum_verified": true,
+    "appimage_launch_probe": "remained running for 12 seconds with extract-and-run"
+  },
+  "deployment": {
+    "azure_static_web_app": "sf-point-and-speak-desktop",
+    "environment": "production",
+    "status": "Ready",
+    "default_hostname": "purple-sand-0c9a9be10.7.azurestaticapps.net",
+    "deployed_files_match_local_build": true
+  }
+}
