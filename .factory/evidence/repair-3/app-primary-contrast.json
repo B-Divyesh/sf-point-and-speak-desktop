@@ -1,0 +1,29 @@
+{
+  "checked_at": "2026-08-29T10:06:31.280Z",
+  "candidate_base": "http://127.0.0.1:4174",
+  "reproduction_before_fix": {
+    "command": "node .factory/evidence/verification-5/app-qa.mjs",
+    "exit_code": 1,
+    "capture_hover_contrast": "1.11:1",
+    "speak_hover_contrast": "1.49:1",
+    "axe_impact": "serious"
+  },
+  "verification_after_fix": {
+    "command": "node .factory/evidence/verification-5/app-qa.mjs",
+    "exit_code": 0,
+    "pass": true,
+    "accessibility_at_initial_hover": [],
+    "accessibility_at_result_hover": [],
+    "console_errors": [],
+    "page_errors": [],
+    "mobile_viewport": "390x640",
+    "mobile_scroll_width": 390,
+    "undersized_mobile_controls": []
+  },
+  "primary_state_contrast": {
+    "normal": "10.51:1",
+    "hover_and_focus": "12.83:1",
+    "active": "14.80:1",
+    "disabled": "6.01:1"
+  }
+}

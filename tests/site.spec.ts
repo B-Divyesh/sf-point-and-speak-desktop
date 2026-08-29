@@ -308,6 +308,6 @@ test("service worker installs the current cache and accepts update checks", asyn
     await registration.update();
     return caches.keys();
   });
-  expect(cachesAfterUpdate).toContain("point-speak-v5");
+  expect(cachesAfterUpdate).toContain("point-speak-v6");
   expect(cachesAfterUpdate).not.toContain("point-speak-v3");
 });

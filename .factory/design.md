@@ -19,6 +19,8 @@ and cropped technical captions make the selection gesture the identity.
 | `--muted` | `#52666D` | `#B6C9CD` | supporting text |
 | `--line` | `#AFC4C4` | `#41616A` | rules and grid |
 | `--cyan` | `#006F82` | `#42D8E9` | selection and focus |
+| `--cyan-hover` | n/a | `#8CE8F2` | primary action hover and focus |
+| `--cyan-active` | n/a | `#B9F3F7` | primary action press |
 | `--cyan-ink` | `#FFFFFF` | `#04191F` | text on accent |
 | `--orange` | `#B84D1A` | `#FF9A63` | calls and warnings |
 | `--success` | `#246B45` | `#76DBA3` | complete states |

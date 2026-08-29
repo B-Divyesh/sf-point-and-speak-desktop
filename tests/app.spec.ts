@@ -1,4 +1,4 @@
-import { expect, test, type Page } from "@playwright/test";
+import { expect, test, type Locator, type Page } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 
 const APP_URL = "http://127.0.0.1:4174";
@@ -8,6 +8,52 @@ async function readSample(page: Page) {
   await page.getByRole("button", { name: "Load sample region" }).click();
   await page.locator("#screen").press("Enter");
   await expect(page.getByLabel("Correct the text before speaking")).toHaveValue(/Seal kit/, { timeout: 30_000 });
+}
+
+async function seriousAxeViolations(page: Page) {
+  const results = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa"]).analyze();
+  return results.violations.filter((item) => ["serious", "critical"].includes(item.impact || ""));
+}
+
+function contrastRatio(foreground: string, background: string) {
+  const luminance = (value: string) => {
+    const channels = value.match(/[\d.]+/g)?.slice(0, 3).map(Number) ?? [];
+    if (channels.length !== 3) throw new Error(`Expected an RGB color, received ${value}`);
+    const linear = channels.map((channel) => {
+      const proportion = channel / 255;
+      return proportion <= 0.04045 ? proportion / 12.92 : ((proportion + 0.055) / 1.055) ** 2.4;
+    });
+    return 0.2126 * linear[0] + 0.7152 * linear[1] + 0.0722 * linear[2];
+  };
+  const light = Math.max(luminance(foreground), luminance(background));
+  const dark = Math.min(luminance(foreground), luminance(background));
+  return (light + 0.05) / (dark + 0.05);
+}
+
+async function expectAccessiblePair(action: Locator) {
+  const colors = await action.evaluate((node) => {
+    const style = getComputedStyle(node);
+    return { foreground: style.color, background: style.backgroundColor };
+  });
+  expect(contrastRatio(colors.foreground, colors.background), colors).toBeGreaterThanOrEqual(4.5);
+}
+
+async function verifyPrimaryInteractionStates(page: Page, action: Locator) {
+  await page.mouse.move(0, 0);
+  await expectAccessiblePair(action);
+  await action.focus();
+  await expectAccessiblePair(action);
+  await action.hover();
+  await expectAccessiblePair(action);
+  const box = await action.boundingBox();
+  if (!box) throw new Error("Primary action has no visible box");
+  await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
+  await page.mouse.down();
+  await expectAccessiblePair(action);
+  await page.mouse.up();
+  await action.evaluate((node) => { (node as HTMLButtonElement).disabled = true; });
+  await expectAccessiblePair(action);
+  await action.evaluate((node) => { (node as HTMLButtonElement).disabled = false; });
 }
 
 for (const viewport of [{ width: 1180, height: 820 }, { width: 390, height: 640 }]) {
@@ -75,8 +121,24 @@ test("@claim:capture-memory app capture and result disappear on reload", async (
 
 test("desktop app has no serious accessibility violations", async ({ page }) => {
   await page.goto(APP_URL);
-  const results = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa"]).analyze();
-  expect(results.violations.filter((item) => ["serious", "critical"].includes(item.impact || ""))).toEqual([]);
+  expect(await seriousAxeViolations(page)).toEqual([]);
+});
+
+test("primary actions keep accessible colors in every state and pass axe while hovered", async ({ page }) => {
+  await page.goto(APP_URL);
+  const capture = page.getByRole("button", { name: "Capture screen" });
+  await verifyPrimaryInteractionStates(page, capture);
+  await capture.hover();
+  expect(await seriousAxeViolations(page)).toEqual([]);
+
+  await page.getByRole("button", { name: "Load sample region" }).click();
+  await page.locator("#screen").press("Enter");
+  const editor = page.getByLabel("Correct the text before speaking");
+  await expect(editor).toHaveValue(/Seal kit/, { timeout: 30_000 });
+  const speak = page.getByRole("button", { name: "Speak text" });
+  await verifyPrimaryInteractionStates(page, speak);
+  await speak.hover();
+  expect(await seriousAxeViolations(page)).toEqual([]);
 });
 
 test("desktop speed control has a 44px touch target", async ({ page }) => {
