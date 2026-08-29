@@ -177,7 +177,7 @@ test("@claim:website-no-tracking every route avoids trackers and third-party scr
   const requests: string[] = [];
   page.on("request", (request) => requests.push(request.url()));
   await page.route(RELEASE_API, (route) => route.fulfill({ json: sampleRelease }));
-  for (const path of ["/", "/?demo=1", "/demo", "/privacy", "/terms", "/missing-page"]) {
+  for (const path of ["/", "/?demo=1", "/demo", "/privacy", "/terms", "/missing-page", "/404.html"]) {
     await page.goto(path);
     const scriptOrigins = await page.locator("script[src]").evaluateAll((scripts) => scripts.map((script) => new URL((script as HTMLScriptElement).src).origin));
     expect(scriptOrigins.every((origin) => origin === "http://127.0.0.1:4173")).toBe(true);
