@@ -1,0 +1,87 @@
+{
+  "candidate": "e30e9298488fd07d5eb5ee7b062b447bedf66be6",
+  "url": "https://point-and-speak-desktop.sociobot.in",
+  "checked_at_utc": "2026-08-29",
+  "verdict": "FAIL",
+  "first_read": {
+    "what": "Read selected screen text aloud",
+    "who": "Low-vision desktop users when screen readers miss remote, old, game, or visual interface text",
+    "first_action": "Try it with sample data",
+    "one_click_seeded_result": true
+  },
+  "claims": {
+    "declared": 19,
+    "passed_after_documented_prerequisites": 19,
+    "failed_assertions": 0
+  },
+  "quality_gates": {
+    "vitest_passed": 12,
+    "playwright_passed": 91,
+    "playwright_skipped": 1,
+    "typecheck": "PASS",
+    "strict_clippy": "PASS",
+    "rustfmt": "PASS",
+    "rust_tests": "2 passed",
+    "npm_audit_high": "0 vulnerabilities",
+    "production_build": "PASS"
+  },
+  "live_accessibility": {
+    "routes_checked": ["/", "/?demo=1", "/demo", "/privacy", "/terms", "/missing-verification-6"],
+    "color_schemes": ["light", "dark"],
+    "axe_serious_or_critical": 0,
+    "keyboard_skip_link_outline": "3px solid rgb(168, 68, 22)",
+    "reduced_motion_running_animations": 0,
+    "mobile_horizontal_overflow_px": 0,
+    "text_resize_200_percent_overflow_px": 0,
+    "undersized_target": {
+      "route": "/",
+      "viewport": "390x844",
+      "name": "Read the privacy note",
+      "width_css_px": 223.734375,
+      "height_css_px": 21,
+      "required_minimum_css_px": 44
+    }
+  },
+  "privacy_and_pwa": {
+    "demo_request_origins": ["https://point-and-speak-desktop.sociobot.in"],
+    "demo_browser_errors": 0,
+    "demo_storage_sentinel_preserved": true,
+    "service_worker_cache": "point-speak-v6",
+    "offline_demo_reload": "PASS",
+    "license_allowance": 30,
+    "first_rate_limited_request": 31,
+    "rate_limit_status": 429,
+    "retry_after_seconds": 4
+  },
+  "performance": {
+    "lighthouse_performance": 98,
+    "lighthouse_accessibility": 100,
+    "lighthouse_best_practices": 100,
+    "lighthouse_seo": 100,
+    "fcp_ms": 946.019,
+    "lcp_ms": 1201.365,
+    "tbt_ms": 171.5,
+    "cls": 0,
+    "total_transfer_bytes": 51182,
+    "site_js_raw_bytes": 19310,
+    "site_js_gzip_bytes": 6640,
+    "site_css_raw_bytes": 14362,
+    "site_css_gzip_bytes": 4108,
+    "mobile_hero_bytes": 16180
+  },
+  "ocr_pilot": {
+    "representative_regions": 20,
+    "usable_under_two_seconds": 20,
+    "startup_ms": 705,
+    "max_recognition_ms": 241
+  },
+  "release": {
+    "version": "v0.1.5",
+    "source_commit": "a1c7e5f1c9fc4267af9d4beb584d0c65d5d7d72b",
+    "platform_assets_complete": true,
+    "linux_appimage_bytes": 86649336,
+    "linux_appimage_sha256": "33b1b35d9903aa587e295ec9b37d86a829101dcf84f653d564d628af0fb4a16b",
+    "installer_checksum_verified": true,
+    "appimage_launch_probe": "remained running for 12 seconds under Xvfb"
+  }
+}

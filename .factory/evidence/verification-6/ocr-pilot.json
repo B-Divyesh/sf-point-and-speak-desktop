@@ -1,0 +1,173 @@
+{
+  "checkedAt": "2026-08-29T11:37:13.550Z",
+  "model": "shipped eng.traineddata.gz",
+  "cases": 20,
+  "startupMs": 705,
+  "successes": 20,
+  "successRate": 1,
+  "threshold": "at least 14/20 at >=0.70 normalized similarity and <2000 ms",
+  "maxRecognitionMs": 241,
+  "results": [
+    {
+      "index": 1,
+      "expected": "Invoice INV-2048\nTotal $1,284.50",
+      "actual": "Invoice INV-2048\nTotal $1,284.50",
+      "durationMs": 241,
+      "similarity": 1,
+      "usableUnderTwoSeconds": true
+    },
+    {
+      "index": 2,
+      "expected": "R-1083  Seal kit 40 mm  READY",
+      "actual": "R-1083 Seal kit 40 mm READY",
+      "durationMs": 129,
+      "similarity": 1,
+      "usableUnderTwoSeconds": true
+    },
+    {
+      "index": 3,
+      "expected": "Server: legacy-db-02\nStatus: ONLINE",
+      "actual": "Server: legacy-db-02\nStatus: ONLINE",
+      "durationMs": 118,
+      "similarity": 1,
+      "usableUnderTwoSeconds": true
+    },
+    {
+      "index": 4,
+      "expected": "Due 29 Aug 2026\nOwner: Maya",
+      "actual": "Due 29 Aug 2026\nOwner: Maya",
+      "durationMs": 72,
+      "similarity": 1,
+      "usableUnderTwoSeconds": true
+    },
+    {
+      "index": 5,
+      "expected": "C:\\Archive\\Q3\\report.txt",
+      "actual": "c:\\Archive\\Q3\\report.txt",
+      "durationMs": 158,
+      "similarity": 1,
+      "usableUnderTwoSeconds": true
+    },
+    {
+      "index": 6,
+      "expected": "Score 18420\nLives 3",
+      "actual": "Score 18420\nLives 3",
+      "durationMs": 111,
+      "similarity": 1,
+      "usableUnderTwoSeconds": true
+    },
+    {
+      "index": 7,
+      "expected": "Connection timed out\nTry again",
+      "actual": "Connection timed out\nTry again",
+      "durationMs": 112,
+      "similarity": 1,
+      "usableUnderTwoSeconds": true
+    },
+    {
+      "index": 8,
+      "expected": "Temperature 72 F\nPressure 42.5 PSI",
+      "actual": "Temperature 72 F\nPressure 42.5 PSI",
+      "durationMs": 89,
+      "similarity": 1,
+      "usableUnderTwoSeconds": true
+    },
+    {
+      "index": 9,
+      "expected": "Ticket INC-7391\nPriority HIGH",
+      "actual": "Ticket INC-7391\nPriority HIGH",
+      "durationMs": 93,
+      "similarity": 1,
+      "usableUnderTwoSeconds": true
+    },
+    {
+      "index": 10,
+      "expected": "Account balance $9,840.22",
+      "actual": "Account balance $9,840.22",
+      "durationMs": 42,
+      "similarity": 1,
+      "usableUnderTwoSeconds": true
+    },
+    {
+      "index": 11,
+      "expected": "Last backup 2026-08-29 09:30 UTC",
+      "actual": "Last backup 2026-08-29 09:30 UTC",
+      "durationMs": 167,
+      "similarity": 1,
+      "usableUnderTwoSeconds": true
+    },
+    {
+      "index": 12,
+      "expected": "Room B-214\nProjector OFFLINE",
+      "actual": "Room B-214\nProjector OFFLINE",
+      "durationMs": 43,
+      "similarity": 1,
+      "usableUnderTwoSeconds": true
+    },
+    {
+      "index": 13,
+      "expected": "Order 008714\nQuantity 16",
+      "actual": "Order 008714\nQuantity 16",
+      "durationMs": 51,
+      "similarity": 1,
+      "usableUnderTwoSeconds": true
+    },
+    {
+      "index": 14,
+      "expected": "Access denied\nAsk your administrator",
+      "actual": "Access denied\nAsk your administrator",
+      "durationMs": 69,
+      "similarity": 1,
+      "usableUnderTwoSeconds": true
+    },
+    {
+      "index": 15,
+      "expected": "Latitude 12.9716 N\nLongitude 77.5946 E",
+      "actual": "Latitude 12.9716 N\nLongitude 77.5946 E",
+      "durationMs": 58,
+      "similarity": 1,
+      "usableUnderTwoSeconds": true
+    },
+    {
+      "index": 16,
+      "expected": "File not found\nRetry or cancel",
+      "actual": "File not found\nRetry or cancel",
+      "durationMs": 42,
+      "similarity": 1,
+      "usableUnderTwoSeconds": true
+    },
+    {
+      "index": 17,
+      "expected": "Build v0.1.4\nChecksum OK",
+      "actual": "Build v0.1.4\nChecksum OK",
+      "durationMs": 73,
+      "similarity": 1,
+      "usableUnderTwoSeconds": true
+    },
+    {
+      "index": 18,
+      "expected": "Meeting starts 14:30\nEnds 15:15",
+      "actual": "Meeting starts 14:30\nEnds 15:15",
+      "durationMs": 66,
+      "similarity": 1,
+      "usableUnderTwoSeconds": true
+    },
+    {
+      "index": 19,
+      "expected": "User ID A7K-992\nStatus ACTIVE",
+      "actual": "User ID A7K-992\nStatus ACTIVE",
+      "durationMs": 41,
+      "similarity": 1,
+      "usableUnderTwoSeconds": true
+    },
+    {
+      "index": 20,
+      "expected": "Network 83 percent\nBattery 41 percent",
+      "actual": "Network 83 percent\nBattery 41 percent",
+      "durationMs": 74,
+      "similarity": 1,
+      "usableUnderTwoSeconds": true
+    }
+  ],
+  "pass": true
+}
