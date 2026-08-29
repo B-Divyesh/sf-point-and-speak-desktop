@@ -1,81 +1,118 @@
-# Point & Speak Desktop — independent verification 3 handoff
+# Point & Speak Desktop — repair 2 handoff
 
-## Result: FAIL
+## Status
 
-Candidate `3680f2f22c21719c1df309943971fd2052ed2f4e` was independently
-verified on 2026-08-29 UTC against
-`https://point-and-speak-desktop.sociobot.in`. Do not release this candidate
-yet.
+Release-blocking findings from independent verification commit
+`1f9e684140fb06eca0c5c4f7caa945fa30935ce9` are repaired in version `0.1.3`.
+The product remains a Tauri 2 desktop app with a static Azure landing site.
 
-The static deployment matches the candidate and the product works end to end.
-All 18 claim commands, the full test suite, strict lint/type checks, Rust tests,
-production build, checkout, privacy, axe, offline, rate-limit, and performance
-checks pass. The release remains blocked because the downloadable desktop
-artifacts were built from older commit `5446ce0`, not from this candidate.
+## Findings reproduced and repaired
 
-Full evidence: `.factory/verification-3.md`.
+### P1 — published installers did not represent the candidate
 
-## Defects by severity
+- Reproduced: GitHub release `v0.1.2` targets
+  `5446ce035d5ff013662c961ccec4284df9451fac`, while the verified candidate was
+  `3680f2f22c21719c1df309943971fd2052ed2f4e` and contained shipped desktop
+  changes after that tag.
+- Repair: bumped the npm, Cargo, Tauri, site, 404, and service-worker identities
+  to `0.1.3` / cache `point-speak-v4`.
+- Root-cause guard: every release matrix job now rejects a non-tag ref, a tag
+  that differs from the package version, inconsistent npm/Cargo/Tauri versions,
+  or a checkout whose SHA differs from `GITHUB_SHA`.
+- Publication contract: the `v0.1.3` workflow publishes Linux AppImage and
+  DEB, Windows setup EXE, Intel and Apple Silicon DMGs, `SHA256SUMS`,
+  `latest.json`, and `PROVENANCE.json`. The release body and metadata record
+  the source commit. Provenance records a SHA-256 subject for every installer.
+- Regression: `tests/config.spec.ts` proves a deliberately stale workflow SHA
+  is rejected and checks the checksum/provenance publication contract.
 
-### P1 — Candidate desktop binaries were not published
+### P2 — mobile Terms target was too narrow
 
-GitHub release `v0.1.2` and workflow run `33180357456` use
-`5446ce035d5ff013662c961ccec4284df9451fac`. Candidate `3680f2f` changes
-`app/extra.css`, `app/index.html`, `src-tauri/Cargo.toml`,
-`src-tauri/src/lib.rs`, and `src-tauri/tauri.conf.json` after that tag. The
-downloaded DEB confirms the older package wording. All live download buttons
-therefore lead to a valid but non-candidate desktop build.
+- Exact reproduction before repair: at `390 × 844`, footer Terms measured
+  `38.296875 × 44` CSS pixels.
+- Repair: standalone footer navigation links now have `min-width: 44px` and
+  `min-height: 44px` with centred content.
+- Exact result after repair: Terms measures `44 × 44` CSS pixels on `/` and
+  `/terms` at 390px, with no horizontal overflow.
+- Regression: `tests/site.spec.ts` asserts both width and height for every
+  standalone mobile target and has a dedicated Terms `44 × 44` test.
 
-### P2 — One mobile navigation target is too narrow
+## Verification evidence
 
-At 390 px, the standalone footer `Terms` link measures `38.3 × 44` CSS pixels.
-The contract requires at least `44 × 44`. Existing tests assert target height
-only and miss the width.
-
-No P0 or P3 defect was found.
-
-## Verification summary
+Run from a clean dependency install on 2026-08-29 UTC:
 
 ```text
-.factory/claims.json                     PASS; 18/18 exact commands
-npm test                                 PASS; 10 Vitest, 87 Playwright, 1 intentional skip
-npm run typecheck                        PASS
-npm run lint                             PASS; Clippy uses -D warnings
+npm ci                                      PASS; 78 packages, 0 audit findings
+npm test                                    PASS; 12 Vitest, 89 Playwright, 1 intentional duplicate skip
+npm run typecheck                           PASS
+npm run lint                                PASS; TypeScript and cargo clippy -D warnings
 cargo fmt --manifest-path src-tauri/Cargo.toml -- --check  PASS
-cargo test --manifest-path src-tauri/Cargo.toml            PASS
-npm run build                            PASS; dist/app and dist/site
-npm audit --omit=dev --audit-level=high PASS; 0 vulnerabilities
-verify-url.sh                            PASS; HTTP/title/lang/h1/main/alt/console
-axe live                                 PASS; 0 serious/critical across all routes, themes, and viewports
-Lighthouse mobile                       95 performance, 100 a11y, 100 best practices, 100 SEO
+cargo test --manifest-path src-tauri/Cargo.toml            PASS; 1 native claim test
+npm run build                               PASS; dist/app and dist/site
+npm audit --omit=dev --audit-level=high     PASS; 0 vulnerabilities
+npm run test:checkout                       PASS; USD 19, HTTP 303 to hosted Dodo checkout
 ```
 
-The cold candidate sample OCR completed in 1,379 ms. A 20-region synthetic
-pilot using the shipped recognition files produced 20/20 usable results; the
-maximum warm recognition time was 198 ms. Demo state stayed isolated, all OCR
-traffic stayed local, service-worker update/offline reload passed, and a
-50-request license-verification burst produced 30 HTTP 200 plus 20 HTTP 429;
-every 429 had `Retry-After: 4`.
+The native checks used the exact Linux prerequisites declared in the release
+workflow. Rust still reports the existing future-compatibility notice in the
+third-party `screenshots 0.8.10` crate; it does not fail strict lint or tests.
 
-The website build matches production exactly for HTML, JS, CSS, and service
-worker SHA-256. The existing DEB checksum also matches its published checksum,
-and the hosted Linux installer succeeds. The blocker is specifically that
-those desktop artifacts predate the candidate.
+Browser coverage includes desktop and 390px mobile, both Playwright projects,
+keyboard route/back focus, one-click demo, local OCR, empty/error states,
+light/dark axe scans on every route, touch targets, reduced motion, offline
+reload and service-worker update, same-origin demo privacy, release and license
+request policy, and the designed 404 response configuration. All 18 claim
+tests pass through the full suite plus the native shortcut and live checkout
+commands. No researched behavior or claim was removed.
 
-## Required next steps
+`verify-url.sh` against the repaired local production site reports HTTP 200,
+the correct title and `lang`, one `h1`, a main landmark, complete alt text,
+labelled buttons, and zero console/page errors. Desktop and mobile screenshots,
+the Terms screenshot, verifier JSON, and Lighthouse JSON are in
+`.factory/evidence/repair-2/local/`.
 
-1. Give the candidate desktop build a new version and tag.
-2. Run `.github/workflows/release.yml` for that tag and confirm all four build
-   jobs plus checksums succeed from the candidate source state.
-3. Download one new artifact, match it to `SHA256SUMS`, and verify its package
-   metadata/build provenance points to the candidate.
-4. Expand the footer `Terms` hit area to at least 44 by 44 CSS pixels and add a
-   regression assertion for both target width and height.
-5. Repeat claims, app smoke tests, live download resolution, and static
-   deployment identity checks before changing the verdict to PASS.
+Fresh mobile Lighthouse against `dist/site`:
 
-## Needs operator action
+```text
+Performance 100  Accessibility 100  Best Practices 100  SEO 100
+FCP 0.9 s        LCP 1.4 s           TBT 20 ms            CLS 0
+Transfer 50 KiB
+```
 
-macOS notarization and Windows Authenticode still require the owner's
-`APPLE_CERTIFICATE` and `WINDOWS_CERT_PFX` secrets. Unsigned status is not the
-reason for this FAIL.
+Production bundles remain below contract budgets:
+
+```text
+site JS       19.31 kB raw / 6.57 kB gzip
+site CSS      14.36 kB raw / 4.09 kB gzip
+desktop JS    36.31 kB raw / 12.72 kB gzip
+desktop CSS    3.78 kB raw / 1.51 kB gzip
+mobile hero   16.18 kB
+fonts          no download
+```
+
+## Run and verify
+
+```sh
+npm ci
+npm test
+npm run typecheck
+npm run lint
+cargo fmt --manifest-path src-tauri/Cargo.toml -- --check
+cargo test --manifest-path src-tauri/Cargo.toml
+npm run build
+npm run test:checkout
+```
+
+The demo remains at
+`https://point-and-speak-desktop.sociobot.in/?demo=1`. Static deployment output
+is `dist/site`. Desktop installers are built only by
+`.github/workflows/release.yml`, as required by the installer contract.
+
+## Known limits and operator action
+
+- Real hardware is still required to observe platform permission dialogs,
+  audible system speech, and compositor-specific multi-display capture.
+- macOS and Windows installers are unsigned. Notarization and Authenticode
+  require the owner's `APPLE_CERTIFICATE` and `WINDOWS_CERT_PFX` secrets.
+- The existing `screenshots 0.8.10` future-compatibility warning should be
+  revisited when its upstream crate releases a compatible update.
