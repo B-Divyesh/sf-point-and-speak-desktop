@@ -1,0 +1,58 @@
+{
+  "baseURL": "https://point-and-speak-desktop.sociobot.in",
+  "checkedAt": "2026-08-29T08:39:09.035Z",
+  "checks": [
+    {
+      "name": "home-mobile",
+      "url": "https://point-and-speak-desktop.sociobot.in/",
+      "status": 200,
+      "title": "Point & Speak Desktop — Read screen text aloud",
+      "headings": [
+        "Read selected screen text aloud"
+      ],
+      "mainCount": 1,
+      "overflow": 0,
+      "consoleErrors": [],
+      "pass": true
+    },
+    {
+      "name": "demo-mobile",
+      "url": "https://point-and-speak-desktop.sociobot.in/?demo=1",
+      "status": 200,
+      "title": "Demo — Point & Speak Desktop",
+      "headings": [
+        "Sample text is ready"
+      ],
+      "mainCount": 1,
+      "overflow": 0,
+      "consoleErrors": [],
+      "pass": true
+    },
+    {
+      "name": "privacy-desktop",
+      "url": "https://point-and-speak-desktop.sociobot.in/privacy",
+      "status": 200,
+      "title": "Privacy — Point & Speak Desktop",
+      "headings": [
+        "Your screen stays on your computer"
+      ],
+      "mainCount": 1,
+      "overflow": 0,
+      "consoleErrors": [],
+      "pass": true
+    },
+    {
+      "name": "404-desktop",
+      "url": "https://point-and-speak-desktop.sociobot.in/definitely-missing-polish-1",
+      "status": 404,
+      "title": "Page not found — Point & Speak Desktop",
+      "headings": [
+        "Page not found"
+      ],
+      "mainCount": 1,
+      "overflow": 0,
+      "consoleErrors": [],
+      "pass": true
+    }
+  ]
+}
