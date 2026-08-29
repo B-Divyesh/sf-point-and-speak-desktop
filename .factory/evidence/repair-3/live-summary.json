@@ -1,0 +1,66 @@
+{
+  "checked_at": "2026-08-29T10:10:00Z",
+  "url": "https://point-and-speak-desktop.sociobot.in",
+  "deployment": {
+    "provider": "Azure Static Web Apps",
+    "deployment_id": "422a8213-bb65-4907-88d4-692cd1d5f9bd",
+    "version": "0.1.5"
+  },
+  "routes": {
+    "viewports": ["1440x900", "390x844"],
+    "paths": ["/", "/demo", "/privacy", "/terms", "/repair-3-missing"],
+    "expected_200_routes_passed": 8,
+    "real_404_routes_passed": 2,
+    "axe_serious_or_critical": 0,
+    "console_or_page_errors": 0,
+    "horizontal_overflow_failures": 0
+  },
+  "keyboard": {
+    "skip_link_first": true,
+    "space_activated_pin": true
+  },
+  "privacy": {
+    "demo_cross_origin_requests": 0,
+    "demo_storage_keys": 0
+  },
+  "motion": {
+    "reduced_motion_matched": true,
+    "running_animations": 0,
+    "maximum_transition_ms": 0
+  },
+  "offline_update": {
+    "cache": "point-speak-v6",
+    "update_resolved": true,
+    "offline_demo_reload": true
+  },
+  "lighthouse_mobile": {
+    "performance": 99,
+    "accessibility": 100,
+    "best_practices": 100,
+    "seo": 100,
+    "fcp_ms": 843.26,
+    "lcp_ms": 1725.07,
+    "tbt_ms": 65,
+    "cls": 0,
+    "transfer_bytes": 51234
+  },
+  "identity": {
+    "index_html_sha256": "e510d540b1d4de05ec8062af0f895c64608c626b7f3f511c60b47137a858402b",
+    "javascript_sha256": "5064cc55e5163728e08963211001d7976a95be39849ac76f93823a5dd481c07f",
+    "css_sha256": "b22bfa3c53a753e4196e6a7214ab2388be232e2e14f84333dd1dad20ea095422",
+    "not_found_html_sha256": "8b32c9cfcfaeb0394c0e1f307643990f6e37e6208c99d4a482ef70129b4cb77e",
+    "service_worker_sha256": "d9423896660af56aa1d94b3a3add95d6b92775025e06fe766d1c1d0535109836",
+    "all_match_dist_site": true
+  },
+  "checkout": {
+    "price": "$19 USD",
+    "status": 303,
+    "host": "checkout.dodopayments.com"
+  },
+  "links": {
+    "checked": 15,
+    "failures": 0,
+    "all_platform_downloads_point_to": "v0.1.5"
+  },
+  "pass": true
+}

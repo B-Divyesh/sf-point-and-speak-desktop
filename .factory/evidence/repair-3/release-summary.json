@@ -1,0 +1,45 @@
+{
+  "checked_at": "2026-08-29T10:16:00Z",
+  "workflow": {
+    "id": 33247098082,
+    "url": "https://github.com/B-Divyesh/sf-point-and-speak-desktop/actions/runs/33247098082",
+    "status": "completed",
+    "conclusion": "success",
+    "source_commit": "a1c7e5f1c9fc4267af9d4beb584d0c65d5d7d72b"
+  },
+  "release": {
+    "tag": "v0.1.5",
+    "id": 378945139,
+    "draft": false,
+    "prerelease": false,
+    "source_commit": "a1c7e5f1c9fc4267af9d4beb584d0c65d5d7d72b"
+  },
+  "installers": {
+    "macos_arm64_dmg": "a23976ea176919cc9cce64507acadf4e182e81a2afe05adc48c57e02e4a54a64",
+    "macos_x64_dmg": "c45e223af3be2e79983664ceea6d1abe100c11bf0a6685a3927f72892099dfc0",
+    "windows_x64_setup_exe": "b1a6c3dba72c6123cf0fd0886f182795f7ced3890f3778a82e0d455f36ededdc",
+    "linux_amd64_appimage": "33b1b35d9903aa587e295ec9b37d86a829101dcf84f653d564d628af0fb4a16b",
+    "linux_amd64_deb": "0782f4793b524cc814ee3bd54ca2d759562cec8b5f1b40cbb413b455ce8bf0c3"
+  },
+  "metadata": {
+    "latest_json_valid": true,
+    "sha256sums_present": true,
+    "provenance_present": true,
+    "provenance_source_matches": true
+  },
+  "live_download_selector": {
+    "windows": "v0.1.5 x64 setup EXE",
+    "macos_arm64": "v0.1.5 Apple Silicon DMG",
+    "macos_x64": "v0.1.5 Intel DMG",
+    "linux": "v0.1.5 amd64 AppImage",
+    "bad_links": 0
+  },
+  "linux_installer": {
+    "command": "XDG_BIN_HOME=<temporary>/bin sh -c 'curl -fsSL https://point-and-speak-desktop.sociobot.in/install.sh | sh'",
+    "installed": true,
+    "reported_checksum_verified": true,
+    "computed_sha256": "33b1b35d9903aa587e295ec9b37d86a829101dcf84f653d564d628af0fb4a16b",
+    "published_checksum_match": true
+  },
+  "pass": true
+}
