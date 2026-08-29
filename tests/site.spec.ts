@@ -270,23 +270,28 @@ test("mobile home and demo fit 390 pixels with primary content in view", async (
   await page.getByRole("link", { name: "Try it with sample data" }).click();
   expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBe(390);
   await expect(page.getByRole("button", { name: "Speak text" })).toBeInViewport();
-  const targets = await page.locator(".site-header a:visible, .site-footer a:visible, .demo-banner a:visible, .demo-banner button:visible, input[type=range]:visible").evaluateAll((nodes) => nodes.map((node) => {
-    const { width, height } = node.getBoundingClientRect();
-    return { name: node.textContent?.trim() || node.getAttribute("aria-label"), width, height };
-  }));
-  for (const target of targets) {
-    expect(target.width, `${target.name} target width`).toBeGreaterThanOrEqual(44);
-    expect(target.height, `${target.name} target height`).toBeGreaterThanOrEqual(44);
-  }
 });
 
-test("mobile footer Terms target is at least 44 by 44 CSS pixels", async ({ page }) => {
+test("every visible mobile interactive target is at least 44 by 44 CSS pixels", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
-  await page.goto("/");
-  const terms = page.getByRole("navigation", { name: "Footer navigation" }).getByRole("link", { name: "Terms" });
-  const box = await terms.boundingBox();
-  expect(box?.width).toBeGreaterThanOrEqual(44);
-  expect(box?.height).toBeGreaterThanOrEqual(44);
+  await page.route(RELEASE_API, (route) => route.fulfill({ json: sampleRelease }));
+
+  for (const path of ["/", "/?demo=1", "/demo", "/privacy", "/terms", "/missing-page"]) {
+    await page.goto(path);
+    const targets = await page.locator("a:visible, button:visible, input:visible, select:visible").evaluateAll((nodes) => nodes.map((node) => {
+      const { width, height } = node.getBoundingClientRect();
+      return {
+        name: node.textContent?.trim() || node.getAttribute("aria-label") || node.getAttribute("type") || node.tagName.toLowerCase(),
+        width,
+        height,
+      };
+    }));
+
+    for (const target of targets) {
+      expect(target.width, `${path} ${target.name} target width`).toBeGreaterThanOrEqual(44);
+      expect(target.height, `${path} ${target.name} target height`).toBeGreaterThanOrEqual(44);
+    }
+  }
 });
 
 test("keyboard history navigation restores heading focus", async ({ page }) => {
