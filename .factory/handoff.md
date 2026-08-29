@@ -1,4 +1,38 @@
-# Point & Speak Desktop — verification 4 handoff
+# Point & Speak Desktop — review 2 handoff
+
+## Review status
+
+**FAIL.** This reviewer made no product-code changes. The committed report is
+[`review-2.md`](review-2.md).
+
+Two findings remain:
+
+- **F-2-1 (blocking; reopens F-1-8):** the landing claims that capture starts
+  only after an explicit action, but there is no matching claim test for that
+  privacy boundary.
+- **F-2-2 (minor):** the README audience sentence has 26 words, exceeding the
+  22-word copy limit.
+
+## What was verified
+
+- Cold live routes were checked at 390 × 844 and 1440 × 900. The first screen
+  clearly states the job, audience, and sample action; the one-click demo,
+  reset, pin/remove, isolation banner, direct demo privacy requests, route
+  metadata, 404, links, history focus, and axe scans were checked.
+- All 18 commands listed in `.factory/claims.json` passed from clean clone
+  `/tmp/point-speak-review-2-wxjcun`. The native claim passed after installing
+  the documented Linux Tauri dependencies from the release workflow.
+- Every earlier review finding was checked live and in code. Only F-1-8 is
+  reopened; the report includes the complete status table.
+
+## Next steps
+
+Implement the test or remove the unsupported capture-on-demand copy, split the
+README sentence, update `.factory/copy-audit.md`, then rerun the review.
+
+---
+
+# Prior verification 4 handoff
 
 ## Status
 
